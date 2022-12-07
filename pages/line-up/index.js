@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 import BandList from "../../components/Line-up/BandList";
 
 function LineUp(props) {
-  const [bands, setBands] = useState([]);
+  /*   const [bands, setBands] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(null); */
 
   /* async function getData() {
     try {
@@ -29,45 +29,20 @@ function LineUp(props) {
     getData();
   }, []); */
 
-  let content = <p>No bands to show</p>;
-
-  if (bands.length > 0) {
-    content = <BandList bands={bands} />;
-  }
-  if (error) {
-    content = <p>{error}</p>;
-  }
-  if (isLoading) {
-    content = <p>Loading...</p>;
-  }
   return (
-    <>
-      <section>{content}</section>
-    </>
+    <section>
+      <BandList bands={props.bands} />;
+    </section>
   );
 }
 
 export async function getStaticProps() {
-  {
-    try {
-      const response = await fetch("http://localhost:8080/bands");
+  const response = await fetch("http://localhost:8080/bands");
+  const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error("Something went wrong!");
-      }
-
-      const data = await response.json();
-
-      setIsLoading(true);
-      setBands(data);
-    } catch (error) {
-      setError(error.message);
-    }
-    setIsLoading(false);
-  }
   return {
     props: {
-      bands: bands,
+      bands: data,
     },
   };
 }
