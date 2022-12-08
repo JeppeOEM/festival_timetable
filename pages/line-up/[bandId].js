@@ -5,18 +5,26 @@ import kebabCase from "../../js/kebabCase";
 import classes from "./BandId.module.sass";
 
 function BandId(props) {
+  const d = [props.members];
   /*   const router = useRouter();
   const band = router.query.bandId; */
   /*   let text = props.bandData.toString(); */
   return (
     <section>
-      <h1>{props.name}</h1>;<h2>{props.genre}</h2>;<p>{props.bio}</p>
+      <h1>{props.name}</h1>;<h3>Genre: {props.genre}</h3>;
+      <h3>
+        Members:{" "}
+        {/*         {props.members.map((member) => {
+          <li>{member}</li>;
+        })} */}
+      </h3>
+      <p>{props.bio}</p>
+      <p>{props.members}</p>
       {
         <figure className={classes.logo}>
           <Image src={props.logo} alt={props.name} fill />
         </figure>
       }
-      <h1>{props.logo}</h1>
     </section>
   );
 }
@@ -43,17 +51,17 @@ export async function getStaticProps(content) {
   } else {
     logoCredits = bandData[0].logoCredits;
   }
-  const isHttp = bandData[0].logo.substring(0, 4);
-  console.log("WHAAAAAAAAAAAAAAAAAAT IS IT", isHttp);
+  const isHttp = bandData[0].logo.substring(0, 4); //Check if the logo is a link or a local image
   if (isHttp === "http") {
     /*     logo = bandData[0].logo; */
-    logo = "/620px-Black_Sabbath_(Iommi,_Osbourne,_Ward_and_Butler).JPG"; //images inside Public folder is accesed by / and the name of the image
+    logo = bandData[0].logo; //images inside Public folder is accesed by / and the name of the image
   } else {
     logo = "/" + bandData[0].logo;
   }
 
   console.log("found", bandData);
   console.log("name " + bandData[0].name);
+  console.log("Members " + bandData[0].members);
 
   return {
     props: {
