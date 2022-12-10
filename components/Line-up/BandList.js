@@ -1,5 +1,5 @@
 import Band from "./Band";
-import classes from "./BandList.module.sass";
+import classes from "../../styles/components/line-up/BandList.module.sass";
 
 function BandList(props) {
   return (

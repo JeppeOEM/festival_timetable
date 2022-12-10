@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import classes from "./Band.module.sass";
+import classes from "../../styles/components/line-up/Band.module.sass";
 import kebabCase from "../../js/kebabCase";
 
 function Band(props) {

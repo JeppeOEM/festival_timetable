@@ -1,36 +1,20 @@
-import { useState, useEffect } from "react";
-
 import BandList from "../../components/Line-up/BandList";
+import Dropdown from "../../components/Line-up/Dropdown";
+import FilterBox from "../../components/Line-up/FilterBox";
+
+import { useState } from "react";
 
 function LineUp(props) {
-  /*   const [bands, setBands] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null); */
-
-  /* async function getData() {
-    try {
-      const response = await fetch("http://localhost:8080/bands");
-
-      if (!response.ok) {
-        throw new Error("Something went wrong!");
-      }
-
-      const data = await response.json();
-
-      setIsLoading(true);
-      setBands(data);
-    } catch (error) {
-      setError(error.message);
-    }
-    setIsLoading(false);
-  } */
-
-  /*   useEffect(() => {
-    getData();
-  }, []); */
+  const [filter, setFilter] = useState([]);
+  const pull_data = (data) => {
+    console.log(data); // LOGS DATA FROM CHILD
+  };
 
   return (
     <section>
+      <Dropdown filterThis={props.genres} setFilter={setFilter} type="Genres" />
+      <FilterBox setFilter={setFilter} filterList={filter} />
+      <Dropdown filterThis={props.days} type="Days" filter={setFilter} />
       <BandList bands={props.bands} />;
     </section>
   );
@@ -38,12 +22,22 @@ function LineUp(props) {
 
 export async function getStaticProps() {
   const response = await fetch("http://localhost:8080/bands");
-
   const data = await response.json();
 
+  const genreData = await data.map((genre) => {
+    return genre.genre; // convert the band name to kebab case and compare it to the bandId
+  });
+
+  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+  const genres = [...new Set(genreData)]; // remove duplicates from the array
+
+  console.log(genres);
   return {
     props: {
       bands: data,
+      genres,
+      days,
     },
   };
 }

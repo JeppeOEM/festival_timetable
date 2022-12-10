@@ -1,23 +1,21 @@
-import { useRouter } from "next/router";
 import Image from "next/image";
-
 import kebabCase from "../../js/kebabCase";
 import classes from "./BandId.module.sass";
 
 function BandId(props) {
-  const d = [props.members];
   /*   const router = useRouter();
   const band = router.query.bandId; */
   /*   let text = props.bandData.toString(); */
+  console.log("THIS ONE", props.members);
+
   return (
     <section>
       <h1>{props.name}</h1>;<h3>Genre: {props.genre}</h3>;
-      <h3>
-        Members:{" "}
+      <ul>
         {/*         {props.members.map((member) => {
           <li>{member}</li>;
         })} */}
-      </h3>
+      </ul>
       <p>{props.bio}</p>
       <p>{props.members}</p>
       {
@@ -46,6 +44,7 @@ export async function getStaticProps(content) {
 
   let logoCredits = null;
   let logo = null;
+
   if (!bandData[0].logoCredits) {
     console.log("no logo credits");
   } else {
