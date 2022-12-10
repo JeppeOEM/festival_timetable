@@ -1,6 +1,7 @@
 import BandList from "../../components/Line-up/BandList";
 import Dropdown from "../../components/Line-up/Dropdown";
 import FilterBox from "../../components/Line-up/FilterBox";
+import Test from "../../components/Line-up/Test";
 
 import { useState } from "react";
 
@@ -12,9 +13,11 @@ function LineUp(props) {
 
   return (
     <section>
-      <Dropdown filterThis={props.genres} setFilter={setFilter} type="Genres" />
+      <p>filter: {filter}</p>
+      <Test></Test>
+      <Dropdown filterThis={props.genres} setFilter={setFilter} filterList={filter} type="Genres" />
       <FilterBox setFilter={setFilter} filterList={filter} />
-      <Dropdown filterThis={props.days} type="Days" filter={setFilter} />
+      <Dropdown filterThis={props.days} filter={setFilter} filterList={filter} type="Days" />
       <BandList bands={props.bands} />;
     </section>
   );

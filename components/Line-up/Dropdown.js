@@ -1,9 +1,12 @@
 let filters = [];
 
 function Dropdown(props) {
-  const { setFilter, filterList } = props;
   const optionChangeHandler = (event) => {
-    setFilter([...filterList, "ss"]); // add event to the end of the array
+    if (props.filterList.lenght === 0) {
+      props.setFilter([event.target.value]);
+    } else {
+      props.setFilter([...props.filterList, event.target.value]);
+    }
   };
 
   return (

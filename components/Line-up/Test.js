@@ -1,23 +1,31 @@
-function Test(props) {
-  console.log("PROPS SPOTS", props.spots);
+import { useState } from "react";
+
+let initialArtists = [
+  { id: 0, name: "Marta Colvin Andrade" },
+  { id: 1, name: "Lamidi Olonade Fakeye" },
+  { id: 2, name: "Louise Nevelson" },
+];
+
+export default function List(props) {
+  const [artists, setArtists] = useState(initialArtists);
 
   return (
     <>
-      <h1>HER</h1>
+      <h1>Inspiring sculptors:</h1>
+      <ul>
+        {artists.map((artist) => (
+          <li key={artist.id}>
+            {artist.name}{" "}
+            <button
+              onClick={() => {
+                setArtists(artists.filter((a) => a.id !== artist.id));
+              }}
+            >
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
-
-export async function getStaticProps() {
-  const response = await fetch("http://localhost:8080/available-spots");
-  const data = await response.json();
-
-  console.log("DSSS", data);
-  return {
-    props: {
-      spots: data,
-    },
-  };
-}
-
-export default Test;
