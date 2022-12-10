@@ -6,6 +6,7 @@ function Dropdown(props) {
       props.setFilter([event.target.value]);
     } else {
       props.setFilter([...props.filterList, event.target.value]);
+      console.log("FILTERLIST", props.filterList);
     }
   };
 
