@@ -11,6 +11,7 @@ function LineUp(props) {
   const [filterDay, setFilterDay] = useState([]);
   const [filterBand, setFilterBand] = useState([]);
   const [letter, setLetter] = useState();
+  const [actInfo, setActInfo] = useState([props.schedule]);
 
   function filterAllGenres(bands) {
     console.log(bands);
@@ -44,7 +45,7 @@ function LineUp(props) {
       <Dropdown filterThis={props.days} setFilter={setFilterDay} filterList={filterDay} type="Days" />
       <FilterBox setFilter={setFilterGenre} filterList={filterGenre} msg="Filter by genre" />
       <FilterBox setFilter={setFilterDay} filterList={filterDay} msg="Filter by day" />
-      <BandList bands={filterBand} filterBand={filterBand} />;
+      <BandList bands={filterBand} filterBand={filterBand} actData={actInfo} />;
     </section>
   );
 }
@@ -53,6 +54,7 @@ export async function getStaticProps() {
   const response = await fetch("http://localhost:8080/bands");
   const responseSchedule = await fetch("http://localhost:8080/schedule");
   const data = await response.json();
+  const dataSchedule = await responseSchedule.json();
   const genreData = await data.map((genre) => {
     return genre.genre;
   });
@@ -67,6 +69,7 @@ export async function getStaticProps() {
       bands: data,
       genres,
       days,
+      schedule: dataSchedule,
     },
   };
 }

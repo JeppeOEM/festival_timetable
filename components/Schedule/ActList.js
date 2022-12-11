@@ -4,6 +4,7 @@ import s from "../../styles/components/schedule/ActList.module.sass";
 import Act from "./Act";
 
 function ActList(props) {
+  console.log("ACTLISL CHECKING", props.actData[0]);
   let midgard = props.actData[0].act["Midgard"];
   let jotunheim = props.actData[0].act["Jotunheim"];
   let vanaheim = props.actData[0].act["Vanaheim"];
