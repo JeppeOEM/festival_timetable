@@ -1,53 +1,37 @@
 import BandList from "../../components/Line-up/BandList";
 import Dropdown from "../../components/Line-up/Dropdown";
 import FilterBox from "../../components/Line-up/FilterBox";
+import Alphabet from "../../components/Line-up/Alphabet";
 import Test from "../../components/Line-up/Test";
 
 import { useEffect, useState } from "react";
 
 function LineUp(props) {
   const [filterGenre, setFilterGenre] = useState([""]);
-  const [filterDay, setFilterDay] = useState([""]);
+  const [filterDay, setFilterDay] = useState([]);
   const [filterBand, setFilterBand] = useState([]);
+  const [letter, setLetter] = useState();
 
-  const arr = ["Metal", "Rock"];
-  function test(bands) {
+  function filterAllGenres(bands) {
     console.log(bands);
     const result = bands.filter((band) => {
-      return arr.some((filt) => {
+      return filterGenre.some((filt) => {
         return band.genre.includes(filt);
       });
     });
 
-    /*     const result = bands.genre.filter((ad) => filterData.every((fd) => ad !== fd)); */
     return result;
   }
 
-  function filterBands(bandData) {
-    // Avoid filter for empty string
-    if (!filterGenre) {
-      return filterResult;
-    }
-
-    const filterData = bandData.filter((band) => !band.genre.includes(filterGenre));
-    console.log(filterGenre);
-
-    return filterData;
+  function filterLetter(bands) {
+    const result = bands.filter((band) => {
+      return band.name[0] === "A";
+    });
   }
-
-  /*   function filterAll(filterBand){
-  for (let i = 0; i < filterBand.length; i++) {
-    let filterResult = filterBands(props.bands);
-    setFilterBand(filterResult);
-  }
-  return result
-  }
- */
 
   useEffect(() => {
-    console.log("TESTING", test(props.bands));
-
-    let filterResult = filterBands(props.bands);
+    let filterResult = filterAllGenres(props.bands);
+    console.log("filter RESLT", filterResult);
     setFilterBand(filterResult);
   }, [filterGenre, filterDay]);
 
@@ -55,10 +39,11 @@ function LineUp(props) {
     <section>
       <p>filter: {filterGenre}</p>
       <p>filter: {filterDay}</p>
+      <Alphabet setFilter={setFilterBand} bands={filterBand}></Alphabet>
       <Dropdown filterThis={props.genres} setFilter={setFilterGenre} filterList={filterGenre} type="Genres" />
       <Dropdown filterThis={props.days} setFilter={setFilterDay} filterList={filterDay} type="Days" />
-      <FilterBox setFilter={setFilterGenre} filterList={filterGenre} />
-      <FilterBox setFilter={setFilterDay} filterList={filterDay} />
+      <FilterBox setFilter={setFilterGenre} filterList={filterGenre} msg="Filter by genre" />
+      <FilterBox setFilter={setFilterDay} filterList={filterDay} msg="Filter by day" />
       <BandList bands={filterBand} filterBand={filterBand} />;
     </section>
   );
@@ -66,6 +51,7 @@ function LineUp(props) {
 
 export async function getStaticProps() {
   const response = await fetch("http://localhost:8080/bands");
+  const responseSchedule = await fetch("http://localhost:8080/schedule");
   const data = await response.json();
   const genreData = await data.map((genre) => {
     return genre.genre;

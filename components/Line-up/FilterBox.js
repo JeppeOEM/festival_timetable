@@ -1,7 +1,7 @@
 export default function FilterBox(props) {
   return (
     <>
-      <h1>Inspiring sculptors:</h1>
+      <h1>{props.msg}</h1>
       <ul>
         {props.filterList.map((artist, index) => (
           <li key={index}>

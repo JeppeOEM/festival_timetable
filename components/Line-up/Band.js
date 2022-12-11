@@ -1,12 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import classes from "../../styles/components/line-up/Band.module.sass";
+import s from "../../styles/components/line-up/Band.module.sass";
 import kebabCase from "../../js/kebabCase";
 
 function Band(props) {
   return (
     <>
-      <li className={classes.style}>
+      <li className={s.style}>
         {/*       <Link href={url}>
         <h2>{props.name}</h2>
       </Link> */}
