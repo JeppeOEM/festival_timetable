@@ -2,17 +2,12 @@ let filters = [];
 
 function DropdownSchedule(props) {
   const optionChangeHandler = (event) => {
-    if (props.filterList.lenght === 0) {
-      props.setFilter([event.target.value]);
-    } else {
-      props.setFilter([...props.filterList, event.target.value]);
-      console.log("FILTERLIST", props.filterList);
-    }
+    props.setFilter(event.target.value);
   };
 
   return (
     <>
-      <select onChange={optionChangeHandler} name={props.type} id={props.type}>
+      <select className='s.dropdownSchedule' onChange={optionChangeHandler}>
         {props.filterThis.map((option, index) => {
           return <option key={index}>{option}</option>;
         })}
