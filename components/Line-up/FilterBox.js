@@ -9,8 +9,7 @@ export default function FilterBox(props) {
             <button
               onClick={() => {
                 props.setFilter(props.filterList.filter((a) => a !== artist));
-              }}
-            >
+              }}>
               Delete
             </button>
           </li>

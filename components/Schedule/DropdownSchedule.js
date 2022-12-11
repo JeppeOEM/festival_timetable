@@ -7,7 +7,7 @@ function DropdownSchedule(props) {
 
   return (
     <>
-      <select className='s.dropdownSchedule' onChange={optionChangeHandler}>
+      <select /* className={s.dropdownSchedule} */ onChange={optionChangeHandler}>
         {props.filterThis.map((option, index) => {
           return <option key={index}>{option}</option>;
         })}
