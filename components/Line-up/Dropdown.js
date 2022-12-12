@@ -2,11 +2,10 @@ let filters = [];
 
 function Dropdown(props) {
   const optionChangeHandler = (event) => {
-    if (props.filterList.lenght === 0) {
+    if (props.filterList.length === 0) {
       props.setFilter([event.target.value]);
     } else {
       props.setFilter([...props.filterList, event.target.value]);
-      console.log("FILTERLIST", props.filterList);
     }
   };
 

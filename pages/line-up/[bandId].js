@@ -2,6 +2,7 @@ import Image from "next/image";
 import kebabCase from "../../js_functions/kebabCase";
 import classes from "./BandId.module.sass";
 import playingWhen from "../../js_functions/playingWhen";
+import DayPlaying from "../../components/Line-up/DayPlaying";
 import { useState } from "react";
 
 //WEIRD NAMING ALERT
@@ -23,7 +24,7 @@ function BandId({ p, genre, name, logo, logoCredits, members, bio }) {
 
   return (
     <section>
-      <h1>{name}</h1>;<h3>Genre: {genre}</h3>;<h2>{day}</h2>
+      <h1>{name}</h1>;<h3>Genre: {genre}</h3>;<DayPlaying></DayPlaying>
       <h2>{scene}</h2>
       <h2>
         {start}:{end}
@@ -69,6 +70,7 @@ export async function getServerSideProps(content) {
   } else {
     logoCredits = bandData[0].logoCredits;
   }
+
   const isHttp = bandData[0].logo.substring(0, 4); //Check if the logo is a link or a local image
   if (isHttp === "http") {
     logo = bandData[0].logo; //images inside Public folder is accesed by / and the name of the image

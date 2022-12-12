@@ -7,7 +7,6 @@ import DropdownSchedule from "./DropdownSchedule";
 function ActList(props) {
   const [filterDay, setFilterDay] = useState("mon");
   const whatDay = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
-  console.log("ACTLISL CHECKING", props.actData[0]);
   let midgard = props.actData[0].act["Midgard"];
   let jotunheim = props.actData[0].act["Jotunheim"];
   let vanaheim = props.actData[0].act["Vanaheim"];

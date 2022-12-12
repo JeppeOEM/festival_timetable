@@ -1,12 +1,19 @@
 import s from "../../styles/components/line-up/Alphabet.module.sass";
+import { useState, useEffect } from "react";
 
-function Alphabet(props) {
+function Alphabet({ setLetter, setFilterBands, bands, filterListGenre }) {
   function filterLetter(letter) {
-    const result = props.bands.filter((band) => {
+    const result = bands.filter((band) => {
       return band.name[0].toLowerCase() === letter;
     });
-    props.setFilter(result);
+    setLetter(letter);
+    setFilterBands(result);
   }
+
+  useEffect(() => {
+    console.log("bands", bands[0]);
+    console.log("filterListGenre", filterListGenre);
+  }, [bands, filterListGenre]);
 
   //destructuring same as props.filterLetter
   return (
@@ -15,13 +22,18 @@ function Alphabet(props) {
         onClick={() => {
           filterLetter("a");
         }}
-        className="letter"
-      >
+        className='letter'>
         A
       </p>
-      {/*       <p onClick={() => {filterLetter}("b")} className="letter">
+
+      <p
+        onClick={() => {
+          filterLetter("b");
+        }}
+        className='letter'>
         B
       </p>
+      {/*       
       <p onClick={() => {filterLetter}("c")} className="letter">
         C
       </p>
@@ -95,8 +107,7 @@ function Alphabet(props) {
         onClick={() => {
           filterLetter("z");
         }}
-        className="letter"
-      >
+        className='letter'>
         Z
       </p>
     </div>

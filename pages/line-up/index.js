@@ -4,25 +4,20 @@ import FilterBox from "../../components/Line-up/FilterBox";
 import Alphabet from "../../components/Line-up/Alphabet";
 import Test from "../../components/Line-up/Test";
 import playingWhen from "../../js_functions/playingWhen";
+import sortList from "../../js_functions/sortList";
+import filterAllGenres from "../../js_functions/filterAllGenres";
+import changeSortDir from "../../js_functions/changeSortDir";
 
 import { useEffect, useState } from "react";
 
-function LineUp(props) {
-  const [filterGenre, setFilterGenre] = useState([""]);
+function LineUp({ bands, genres, playingWhenData }) {
+  const [filterGenre, setFilterGenre] = useState([]);
   const [filterDay, setFilterDay] = useState([]);
   const [filterBand, setFilterBand] = useState([]);
   const [letter, setLetter] = useState();
-  const [actData, setActData] = useState([props.actData]);
+  const [actData, setActData] = useState(playingWhenData);
+  const [sortDir, setSortDir] = useState("1");
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-  function filterAllGenres(bands) {
-    const result = bands.filter((band) => {
-      return filterGenre.some((filt) => {
-        return band.genre.includes(filt);
-      });
-    });
-
-    return result;
-  }
 
   function filterLetter(bands) {
     const result = bands.filter((band) => {
@@ -30,18 +25,61 @@ function LineUp(props) {
     });
   }
 
+  function bandsPlayingPerDay(actData, bands, day) {
+    function filterIt() {
+      const result = actData.filter((act) => {
+        act === day;
+      });
+    }
+    const filterPerDay = filterIt();
+
+    return filterPerDay;
+  }
+
+  function filterPerDay(day) {
+    const dayList = actData.filter((act) => {
+      if (act.day === day) {
+        return act;
+      }
+    });
+
+    function filterDaysCallback(actDay) {
+      for (let i = 0; i < actData.length; i++) {
+        const element = actData[i];
+        console.log(element.day);
+        if (actDay === actDay) {
+          return actData[i];
+        }
+      }
+    }
+
+    let result = dayList.filter((band) => filterDaysCallback(band.day));
+    return result;
+  }
+
+  console.log("TEST", filterPerDay("tue"));
+
   useEffect(() => {
-    let filterResult = filterAllGenres(props.bands);
-    console.log("filter RESLT", filterResult);
+    console.log("sortDIR", sortDir);
+    let filterResult = filterAllGenres(bands, filterGenre);
+
+    filterResult = sortList(filterResult, sortDir);
+
     setFilterBand(filterResult);
-  }, [filterGenre, filterDay]);
+    /*     console.log(sortDir); */
+  }, [filterGenre, filterDay, sortDir]);
 
   return (
     <section>
       <p>filter: {filterGenre}</p>
       <p>filter: {filterDay}</p>
-      <Alphabet setFilter={setFilterBand} bands={filterBand}></Alphabet>
-      <Dropdown filterThis={props.genres} setFilter={setFilterGenre} filterList={filterGenre} type='Genres' />
+      <button onClick={() => changeSortDir(sortDir)} setSortDir={setSortDir}>
+        Change Direction
+      </button>
+      <Alphabet setLetter={setLetter} setFilterBand={setFilterBand} setFilterGenre={setFilterGenre} bands={filterBand}>
+        filterList={filterGenre}
+      </Alphabet>
+      <Dropdown filterThis={genres} setFilter={setFilterGenre} filterList={filterGenre} type='Genres' />
       <Dropdown filterThis={days} setFilter={setFilterDay} filterList={filterDay} type='Days' />
       <FilterBox setFilter={setFilterGenre} filterList={filterGenre} msg='Filter by genre' />
       <FilterBox setFilter={setFilterDay} filterList={filterDay} msg='Filter by day' />
@@ -67,7 +105,7 @@ export async function getStaticProps() {
     props: {
       bands: data,
       genres,
-      actData: playingWhenData,
+      playingWhenData,
     },
   };
 }
