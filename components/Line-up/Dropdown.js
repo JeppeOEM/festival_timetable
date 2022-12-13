@@ -7,6 +7,7 @@ function Dropdown(props) {
     } else {
       props.setFilter([...props.filterList, event.target.value]);
     }
+    props.changeView(false);
   };
 
   return (

@@ -19,46 +19,9 @@ function LineUp({ bands, genres, playingWhenData }) {
   const [genresDropdown, setGenresdropdown] = useState(genres);
   const [actData, setActData] = useState(playingWhenData);
   const [sortDir, setSortDir] = useState("1");
+  const [filterSettings, setFilterSettings] = useState(true);
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-  /*   bands = bands.map((band) => {
-    for (let i = 0; i < playingWhenData.length; i++) {
-      if (band.name === playingWhenData[i].id) {
-        band.day = playingWhenData[i].day;
-        band.scene = playingWhenData[i].scene;
-        band.start = playingWhenData[i].start;
-        band.end = playingWhenData[i].end;
-        console.log("DDDDDDDDDD", band);
-      }
-    }
-  });
-  console.log("DDDDDDDDDD", bands); */
-  /* 
-  function getDay(playingData, day) {
-    let arr = [];
-    for (let i = 0; i < playingData.length; i++) {
-      if (playingData[i].day === day) {
-        console.log(playingData[i].id);
-        arr.push(playingData[i]);
-      }
-    }
-    return arr;
-  }
-
-  function bandScheduleInfo(p) {
-    for (let i = 0; i < p.length; i++) {
-      if (p[i].id === `${filterDay}`) {
-        console.log(p[i].id);
-        return p[i];
-      }
-    }
-  }
- */
-  /*   const getInfo = getDay(playingWhenData, "fri");
-  const { day, scene, start, end } = getInfo;
-  console.log(getInfo);
-  bandScheduleInfo(getInfo);
- */
   function filterPerDay() {
     const dayList = actData.filter((act) => {
       if (act.day === filterDay) {
@@ -109,23 +72,41 @@ function LineUp({ bands, genres, playingWhenData }) {
 
     filterResult = sortList(filterResult, sortDir);
 
-    setFilterBand(filterResult);
+    if (filterBand.length > 0) {
+      setFilterBand(filterResult);
+    } else {
+      setFilterBand(bands);
+    }
     /*     console.log(sortDir); */
   }, [filterGenre, filterDay, sortDir]);
 
+  function changeView(setFilterSettings, setFilterBand, bands) {
+    setFilterSettings(true);
+    setFilterBand(bands);
+    console.log("FUCK");
+  }
+
   return (
     <section>
+      <button onClick={() => changeView(setFilterSettings, setFilterBand, bands)}>A-Z</button>
       <p>filter: {filterGenre}</p>
       <p>filter: {filterDay}</p>
       <button onClick={() => changeSortDir(sortDir, setSortDir)}>Change Direction</button>
       <Alphabet setLetter={setLetter} setFilterBand={setFilterBand} setFilterGenre={setFilterGenre} bands={filterBand}>
         filterList={filterGenre}
       </Alphabet>
-      <DropdownDay setFilter={setFilterDay} filterList={filterDay} type='Days' />
-      <Dropdown filterThis={genresDropdown} setFilter={setFilterGenre} filterList={filterGenre} type='Genres' />
+      <DropdownDay changeView={setFilterSettings} setFilter={setFilterDay} filterList={filterDay} type='Days' />
+      <Dropdown
+        changeView={setFilterSettings}
+        filterThis={genresDropdown}
+        setFilter={setFilterGenre}
+        filterList={filterGenre}
+        type='Genres'
+      />
       <FilterBox setFilter={setFilterGenre} filterList={filterGenre} msg='Filter by genre' />
       {/*       <FilterBox setFilter={setFilterDay} filterList={filterDay} msg='Filter by day' /> */}
-      <BandList bands={filterBand} filterBand={filterBand} actData={actData} />;
+
+      {filterSettings && <BandList bands={filterBand} filterBand={filterBand} actData={actData} />}
     </section>
   );
 }
@@ -153,3 +134,41 @@ export async function getStaticProps() {
 }
 
 export default LineUp;
+/*   bands = bands.map((band) => {
+    for (let i = 0; i < playingWhenData.length; i++) {
+      if (band.name === playingWhenData[i].id) {
+        band.day = playingWhenData[i].day;
+        band.scene = playingWhenData[i].scene;
+        band.start = playingWhenData[i].start;
+        band.end = playingWhenData[i].end;
+        console.log("DDDDDDDDDD", band);
+      }
+    }
+  });
+  console.log("DDDDDDDDDD", bands); */
+/* 
+  function getDay(playingData, day) {
+    let arr = [];
+    for (let i = 0; i < playingData.length; i++) {
+      if (playingData[i].day === day) {
+        console.log(playingData[i].id);
+        arr.push(playingData[i]);
+      }
+    }
+    return arr;
+  }
+
+  function bandScheduleInfo(p) {
+    for (let i = 0; i < p.length; i++) {
+      if (p[i].id === `${filterDay}`) {
+        console.log(p[i].id);
+        return p[i];
+      }
+    }
+  }
+ */
+/*   const getInfo = getDay(playingWhenData, "fri");
+  const { day, scene, start, end } = getInfo;
+  console.log(getInfo);
+  bandScheduleInfo(getInfo);
+ */

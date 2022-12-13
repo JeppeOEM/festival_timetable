@@ -3,6 +3,7 @@ const whatDay = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 function DropdownDay(props) {
   const optionChangeHandler = (event) => {
     props.setFilter(event.target.value);
+    props.changeView(false);
   };
 
   return (
