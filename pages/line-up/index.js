@@ -16,6 +16,7 @@ function LineUp({ bands, genres, playingWhenData }) {
   const [filterDay, setFilterDay] = useState([]);
   const [filterBand, setFilterBand] = useState([]);
   const [letter, setLetter] = useState();
+  const [genresDropdown, setGenresdropdown] = useState(genres);
   const [actData, setActData] = useState(playingWhenData);
   const [sortDir, setSortDir] = useState("1");
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -32,7 +33,7 @@ function LineUp({ bands, genres, playingWhenData }) {
     }
   });
   console.log("DDDDDDDDDD", bands); */
-
+  /* 
   function getDay(playingData, day) {
     let arr = [];
     for (let i = 0; i < playingData.length; i++) {
@@ -52,55 +53,59 @@ function LineUp({ bands, genres, playingWhenData }) {
       }
     }
   }
-
-  const getInfo = getDay(playingWhenData, "fri");
+ */
+  /*   const getInfo = getDay(playingWhenData, "fri");
   const { day, scene, start, end } = getInfo;
   console.log(getInfo);
   bandScheduleInfo(getInfo);
-
-  function filterLetter(bands) {
-    const result = bands.filter((band) => {
-      return band.name[0] === "A";
-    });
-  }
-
-  function bandsPlayingPerDay(actData, bands, day) {
-    function filterIt() {
-      const result = actData.filter((act) => {
-        act === day;
-      });
-    }
-    const filterPerDay = filterIt();
-
-    return filterPerDay;
-  }
-
-  function filterPerDay(day) {
+ */
+  function filterPerDay() {
     const dayList = actData.filter((act) => {
-      if (act.day === day) {
+      if (act.day === filterDay) {
         return act;
       }
     });
 
-    function filterDaysCallback(actDay) {
-      for (let i = 0; i < actData.length; i++) {
-        const element = actData[i];
-        console.log(element.day);
-        if (actDay === actDay) {
-          return actData[i];
+    const getBands = bands.filter((band) => {
+      for (let i = 0; i < dayList.length; i++) {
+        if (band.name === dayList[i].id) {
+          return band;
         }
       }
-    }
+    });
 
-    let result = dayList.filter((band) => filterDaysCallback(band.day));
-    return result;
+    /*     let arr = [];
+    dayList.forEach((act) => {
+      for (let i = 0; i < bands.length; i++) {
+        if (act.id === bands[i].name) {
+          arr.push(bands[i]);
+        }
+      }
+    }); */
+
+    console.log(getBands);
+
+    return getBands;
   }
 
-  /*   console.log("TEST", filterPerDay("tue")); */
+  /*   console.log(filterPerDay("tue", bands)); */
+
+  /*     let result = dayList.filter((act) => filterDaysCallback(act.id)); X
+    return result;
+  }
+*/
 
   useEffect(() => {
     console.log("sortDIR", sortDir);
-    let filterResult = filterAllGenres(bands, filterGenre);
+    let filterResult = filterPerDay("tue", bands);
+
+    const genreData = filterResult.map((genre) => {
+      return genre.genre;
+    });
+    const genres = [...new Set(genreData)];
+    setGenresdropdown(genres);
+
+    filterResult = filterAllGenres(filterResult, filterGenre);
 
     filterResult = sortList(filterResult, sortDir);
 
@@ -117,7 +122,7 @@ function LineUp({ bands, genres, playingWhenData }) {
         filterList={filterGenre}
       </Alphabet>
       <DropdownDay setFilter={setFilterDay} filterList={filterDay} type='Days' />
-      <Dropdown filterThis={genres} setFilter={setFilterGenre} filterList={filterGenre} type='Genres' />
+      <Dropdown filterThis={genresDropdown} setFilter={setFilterGenre} filterList={filterGenre} type='Genres' />
       <FilterBox setFilter={setFilterGenre} filterList={filterGenre} msg='Filter by genre' />
       {/*       <FilterBox setFilter={setFilterDay} filterList={filterDay} msg='Filter by day' /> */}
       <BandList bands={filterBand} filterBand={filterBand} actData={actData} />;

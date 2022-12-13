@@ -26,6 +26,7 @@ function BandId({ p, genre, name, logo, logoCredits, members, bio }) {
     <section>
       <h1>{name}</h1>;<h3>Genre: {genre}</h3>;<DayPlaying></DayPlaying>
       <h2>{scene}</h2>
+      <h2>{day}</h2>
       <h2>
         {start}:{end}
       </h2>
