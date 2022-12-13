@@ -7,6 +7,7 @@ import playingWhen from "../../js_functions/playingWhen";
 import sortList from "../../js_functions/sortList";
 import filterAllGenres from "../../js_functions/filterAllGenres";
 import changeSortDir from "../../js_functions/changeSortDir";
+import DropdownDay from "../../components/Schedule/DropdownDay";
 
 import { useEffect, useState } from "react";
 
@@ -18,6 +19,44 @@ function LineUp({ bands, genres, playingWhenData }) {
   const [actData, setActData] = useState(playingWhenData);
   const [sortDir, setSortDir] = useState("1");
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+  /*   bands = bands.map((band) => {
+    for (let i = 0; i < playingWhenData.length; i++) {
+      if (band.name === playingWhenData[i].id) {
+        band.day = playingWhenData[i].day;
+        band.scene = playingWhenData[i].scene;
+        band.start = playingWhenData[i].start;
+        band.end = playingWhenData[i].end;
+        console.log("DDDDDDDDDD", band);
+      }
+    }
+  });
+  console.log("DDDDDDDDDD", bands); */
+
+  function getDay(playingData, day) {
+    let arr = [];
+    for (let i = 0; i < playingData.length; i++) {
+      if (playingData[i].day === day) {
+        console.log(playingData[i].id);
+        arr.push(playingData[i]);
+      }
+    }
+    return arr;
+  }
+
+  function bandScheduleInfo(p) {
+    for (let i = 0; i < p.length; i++) {
+      if (p[i].id === `${filterDay}`) {
+        console.log(p[i].id);
+        return p[i];
+      }
+    }
+  }
+
+  const getInfo = getDay(playingWhenData, "fri");
+  const { day, scene, start, end } = getInfo;
+  console.log(getInfo);
+  bandScheduleInfo(getInfo);
 
   function filterLetter(bands) {
     const result = bands.filter((band) => {
@@ -57,7 +96,7 @@ function LineUp({ bands, genres, playingWhenData }) {
     return result;
   }
 
-  console.log("TEST", filterPerDay("tue"));
+  /*   console.log("TEST", filterPerDay("tue")); */
 
   useEffect(() => {
     console.log("sortDIR", sortDir);
@@ -73,16 +112,14 @@ function LineUp({ bands, genres, playingWhenData }) {
     <section>
       <p>filter: {filterGenre}</p>
       <p>filter: {filterDay}</p>
-      <button onClick={() => changeSortDir(sortDir)} setSortDir={setSortDir}>
-        Change Direction
-      </button>
+      <button onClick={() => changeSortDir(sortDir, setSortDir)}>Change Direction</button>
       <Alphabet setLetter={setLetter} setFilterBand={setFilterBand} setFilterGenre={setFilterGenre} bands={filterBand}>
         filterList={filterGenre}
       </Alphabet>
+      <DropdownDay setFilter={setFilterDay} filterList={filterDay} type='Days' />
       <Dropdown filterThis={genres} setFilter={setFilterGenre} filterList={filterGenre} type='Genres' />
-      <Dropdown filterThis={days} setFilter={setFilterDay} filterList={filterDay} type='Days' />
       <FilterBox setFilter={setFilterGenre} filterList={filterGenre} msg='Filter by genre' />
-      <FilterBox setFilter={setFilterDay} filterList={filterDay} msg='Filter by day' />
+      {/*       <FilterBox setFilter={setFilterDay} filterList={filterDay} msg='Filter by day' /> */}
       <BandList bands={filterBand} filterBand={filterBand} actData={actData} />;
     </section>
   );

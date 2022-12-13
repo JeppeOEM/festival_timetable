@@ -1,14 +1,14 @@
-export default function FilterBox(props) {
+export default function FilterBox({ msg, filterList, setFilter }) {
   return (
     <>
-      <h1>{props.msg}</h1>
+      <h1>{msg}</h1>
       <ul>
-        {props.filterList.map((artist, index) => (
+        {filterList.map((artist, index) => (
           <li key={index}>
             {artist}
             <button
               onClick={() => {
-                props.setFilter(props.filterList.filter((a) => a !== artist));
+                setFilter(filterList.filter((a) => a !== artist));
               }}>
               Delete
             </button>

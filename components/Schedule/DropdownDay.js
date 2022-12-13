@@ -1,6 +1,6 @@
-let filters = [];
+const whatDay = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
-function DropdownSchedule(props) {
+function DropdownDay(props) {
   const optionChangeHandler = (event) => {
     props.setFilter(event.target.value);
   };
@@ -8,7 +8,7 @@ function DropdownSchedule(props) {
   return (
     <>
       <select /* className={s.dropdownSchedule} */ onChange={optionChangeHandler}>
-        {props.filterThis.map((option, index) => {
+        {whatDay.map((option, index) => {
           return <option key={index}>{option}</option>;
         })}
       </select>
@@ -16,4 +16,4 @@ function DropdownSchedule(props) {
   );
 }
 
-export default DropdownSchedule;
+export default DropdownDay;

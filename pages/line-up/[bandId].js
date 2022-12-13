@@ -78,7 +78,7 @@ export async function getServerSideProps(content) {
     logo = "/" + bandData[0].logo;
   }
 
-  let playingWhenResult = playingWhen(dataSchedule);
+  const playingWhenResult = playingWhen(dataSchedule);
 
   /*   console.log(result); */
 

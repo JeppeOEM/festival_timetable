@@ -1,4 +1,4 @@
-function changeSortDir(sortDir) {
+function changeSortDir(sortDir, setSortDir) {
   if (sortDir === "1") {
     setSortDir("-1");
   } else {
