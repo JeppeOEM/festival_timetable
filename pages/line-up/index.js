@@ -1,7 +1,8 @@
 import BandList from "../../components/Line-up/BandList";
+import BandListGenres from "../../components/Line-up/BandListGenres";
 import Dropdown from "../../components/Line-up/Dropdown";
 import FilterBox from "../../components/Line-up/FilterBox";
-import Alphabet from "../../components/Line-up/Alphabet";
+
 import Test from "../../components/Line-up/Test";
 import playingWhen from "../../js_functions/playingWhen";
 import sortList from "../../js_functions/sortList";
@@ -62,11 +63,11 @@ function LineUp({ bands, genres, playingWhenData }) {
     console.log("sortDIR", sortDir);
     let filterResult = filterPerDay("tue", bands);
 
-    const genreData = filterResult.map((genre) => {
+    /*     const genreData = filterResult.map((genre) => {
       return genre.genre;
     });
     const genres = [...new Set(genreData)];
-    setGenresdropdown(genres);
+    setGenresdropdown(genres); */
 
     filterResult = filterAllGenres(filterResult, filterGenre);
 
@@ -92,9 +93,7 @@ function LineUp({ bands, genres, playingWhenData }) {
       <p>filter: {filterGenre}</p>
       <p>filter: {filterDay}</p>
       <button onClick={() => changeSortDir(sortDir, setSortDir)}>Change Direction</button>
-      <Alphabet setLetter={setLetter} setFilterBand={setFilterBand} setFilterGenre={setFilterGenre} bands={filterBand}>
-        filterList={filterGenre}
-      </Alphabet>
+
       <DropdownDay changeView={setFilterSettings} setFilter={setFilterDay} filterList={filterDay} type='Days' />
       <Dropdown
         changeView={setFilterSettings}
@@ -107,6 +106,7 @@ function LineUp({ bands, genres, playingWhenData }) {
       {/*       <FilterBox setFilter={setFilterDay} filterList={filterDay} msg='Filter by day' /> */}
 
       {filterSettings && <BandList bands={filterBand} filterBand={filterBand} actData={actData} />}
+      {!filterSettings && <BandListGenres bands={filterBand} filterBand={filterBand} actData={actData} />}
     </section>
   );
 }
