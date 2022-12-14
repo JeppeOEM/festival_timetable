@@ -1,9 +1,9 @@
 import Band from "./Band";
-import classes from "../../styles/components/line-up/BandList.module.sass";
+import s from "../../styles/components/line-up/BandGrid.module.sass";
 
 function BandList(props) {
   return (
-    <ul className={classes.BandList}>
+    <>
       {props.bands.map((band) => {
         return (
           <Band
@@ -16,7 +16,7 @@ function BandList(props) {
             actData={props.actData}></Band>
         );
       })}
-    </ul>
+    </>
   );
 }
 

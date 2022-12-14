@@ -1,17 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
-import s from "../../styles/components/line-up/Band.module.sass";
+
 import kebabCase from "../../js_functions/kebabCase";
+import BandGrid from "../../styles/components/line-up/BandGrid.module.sass";
 
 function Band(props) {
   return (
-    <>
-      <li className={s.style}>
-        <Link href={{ pathname: `/line-up/[band]` }} as={`line-up/${kebabCase(props.name)}`}>
-          <h2>{props.name}</h2>
-        </Link>
-      </li>
-    </>
+    <article className={BandGrid.Band}>
+      <Link href={{ pathname: `/line-up/[band]` }} as={`line-up/${kebabCase(props.name)}`}>
+        <h2>{props.name}</h2>
+      </Link>
+    </article>
   );
 }
 
