@@ -6,10 +6,9 @@ import FilterBox from "../../components/Line-up/FilterBox";
 import Test from "../../components/Line-up/Test";
 import playingWhen from "../../js_functions/playingWhen";
 import sortList from "../../js_functions/sortList";
-import filterAllGenres from "../../js_functions/filterAllGenres";
+
 import changeSortDir from "../../js_functions/changeSortDir";
 import getRandomImage from "../../js_functions/getRandomImage";
-import filterPerDay from "../../js_functions/filterPerDay";
 
 import DropdownDay from "../../components/Schedule/DropdownDay";
 
@@ -27,16 +26,51 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
   const [resetData, setResetData] = useState(bandsReset);
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-  /*   console.log(filterPerDay("tue", bands)); */
+  function filterPerDay(currentList) {
+    const dayList = actData.filter((act) => {
+      if (act.day === filterDay) {
+        return act;
+      }
+    });
 
-  /*     let result = dayList.filter((act) => filterDaysCallback(act.id)); X
+    const getBands = currentList.filter((band) => {
+      for (let i = 0; i < dayList.length; i++) {
+        if (band.name === dayList[i].id) {
+          return band;
+        }
+      }
+    });
+
+    console.log(getBands);
+
+    return getBands;
+  }
+
+  function filterAllGenres(bands, filterGenre) {
+    const result = bands.filter((band) => {
+      if (filterGenre.length !== 0) {
+        return filterGenre.some((filt) => {
+          //some = does the callback for any element in the array?
+          return band.genre.includes(filt);
+        });
+      } else {
+        return band;
+      }
+    });
+
     return result;
   }
-*/
 
   useEffect(() => {
+    console.log(filterGenre);
+    setFilterBand(bands);
+    let filterResult = filterAllGenres(bands, filterGenre);
     console.log("sortDIR", sortDir);
-    let filterResult = filterPerDay("sun", resetData, actData);
+    filterResult = filterPerDay(filterResult);
+
+    setFilterBand(filterResult);
+    /* 
+
 
     /*     const genreData = filterResult.map((genre) => {
       return genre.genre;
@@ -44,9 +78,7 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
     const genres = [...new Set(genreData)];
     setGenresdropdown(genres); */
 
-    filterResult = filterAllGenres(filterResult, filterGenre);
-
-    filterResult = sortList(filterResult, sortDir);
+    /*     filterResult = sortList(filterResult, sortDir); */
 
     /*     if (filterGenre == 0) {
       console.log("MONSTER");
