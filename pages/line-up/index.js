@@ -25,15 +25,21 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
   const [filterSettings, setFilterSettings] = useState(true);
   const [resetData, setResetData] = useState(bandsReset);
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  const whatDay = ["allDays", "mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
   function filterPerDay(currentList) {
+    let getBands = [];
+
     const dayList = actData.filter((act) => {
+      if (filterDay === "allDays") {
+        return act;
+      }
       if (act.day === filterDay) {
         return act;
       }
     });
 
-    const getBands = currentList.filter((band) => {
+    getBands = currentList.filter((band) => {
       for (let i = 0; i < dayList.length; i++) {
         if (band.name === dayList[i].id) {
           return band;
@@ -69,48 +75,42 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
     filterResult = filterPerDay(filterResult);
 
     setFilterBand(filterResult);
-    /* 
 
+    console.log(filterBand);
+    console.log(filterDay);
+    console.log(filterGenre);
 
-    /*     const genreData = filterResult.map((genre) => {
-      return genre.genre;
-    });
-    const genres = [...new Set(genreData)];
-    setGenresdropdown(genres); */
-
-    /*     filterResult = sortList(filterResult, sortDir); */
-
-    /*     if (filterGenre == 0) {
-      console.log("MONSTER");
-      console.log(filterDay);
-    }
-
-    if (filterDay > 0) {
-      setFilterBand(filterResult);
-    } else {
+    if (filterBand.length == 0 && filterDay.length == 0 && filterGenre == 0) {
+      //loads all bands on a new sreenn
       setFilterBand(bands);
-    } */
-    /*     console.log(sortDir); */
+    }
   }, [filterGenre, filterDay, sortDir]);
 
-  function changeView(setFilterSettings, setFilterBand, bands) {
+  function changeView(setFilterSettings, setFilterBand, resetData) {
     setFilterSettings(true);
     setFilterDay([]);
     setFilterGenre([]);
-
-    setFilterBand(bands);
+    console.log(resetData);
+    setFilterBand(resetData);
+    console.log(filterSettings);
     console.log("FUCK");
   }
 
   return (
     <section>
-      <button onClick={() => changeView(setFilterSettings, setFilterBand, bands)}>A-Z</button>
+      <button onClick={() => changeView(setFilterSettings, setFilterBand, resetData)}>A-Z</button>
       <p>filter: {filterGenre}</p>
       <p>filter: {filterDay}</p>
       <img src='public\img\AdobeStock_97778068.jpeg' alt='' width='300px' height='200px' />
       <button onClick={() => changeSortDir(sortDir, setSortDir)}>Change Direction</button>
       w
-      <DropdownDay changeView={setFilterSettings} setFilter={setFilterDay} filterList={filterDay} type='Days' />
+      <DropdownDay
+        changeView={setFilterSettings}
+        setFilter={setFilterDay}
+        filterList={filterDay}
+        whatDay={whatDay}
+        type='Days'
+      />
       <Dropdown
         changeView={setFilterSettings}
         filterThis={genresDropdown}
