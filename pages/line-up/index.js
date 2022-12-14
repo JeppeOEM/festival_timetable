@@ -9,12 +9,13 @@ import sortList from "../../js_functions/sortList";
 import filterAllGenres from "../../js_functions/filterAllGenres";
 import changeSortDir from "../../js_functions/changeSortDir";
 import getRandomImage from "../../js_functions/getRandomImage";
+import filterPerDay from "../../js_functions/filterPerDay";
 
 import DropdownDay from "../../components/Schedule/DropdownDay";
 
 import { useEffect, useState } from "react";
 
-function LineUp({ bands, genres, playingWhenData }) {
+function LineUp({ bands, genres, playingWhenData, bandsReset }) {
   const [filterGenre, setFilterGenre] = useState([]);
   const [filterDay, setFilterDay] = useState([]);
   const [filterBand, setFilterBand] = useState([]);
@@ -23,36 +24,8 @@ function LineUp({ bands, genres, playingWhenData }) {
   const [actData, setActData] = useState(playingWhenData);
   const [sortDir, setSortDir] = useState("1");
   const [filterSettings, setFilterSettings] = useState(true);
+  const [resetData, setResetData] = useState(bandsReset);
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-
-  function filterPerDay(filterDay, bands) {
-    const dayList = actData.filter((act) => {
-      if (act.day === filterDay) {
-        return act;
-      }
-    });
-
-    const getBands = bands.filter((band) => {
-      for (let i = 0; i < dayList.length; i++) {
-        if (band.name === dayList[i].id) {
-          return band;
-        }
-      }
-    });
-
-    /*     let arr = [];
-    dayList.forEach((act) => {
-      for (let i = 0; i < bands.length; i++) {
-        if (act.id === bands[i].name) {
-          arr.push(bands[i]);
-        }
-      }
-    }); */
-
-    console.log(getBands);
-
-    return getBands;
-  }
 
   /*   console.log(filterPerDay("tue", bands)); */
 
@@ -63,7 +36,7 @@ function LineUp({ bands, genres, playingWhenData }) {
 
   useEffect(() => {
     console.log("sortDIR", sortDir);
-    let filterResult = filterPerDay(filterDay, bands);
+    let filterResult = filterPerDay("sun", resetData, actData);
 
     /*     const genreData = filterResult.map((genre) => {
       return genre.genre;
@@ -75,7 +48,7 @@ function LineUp({ bands, genres, playingWhenData }) {
 
     filterResult = sortList(filterResult, sortDir);
 
-    if (filterGenre == 0) {
+    /*     if (filterGenre == 0) {
       console.log("MONSTER");
       console.log(filterDay);
     }
@@ -84,7 +57,7 @@ function LineUp({ bands, genres, playingWhenData }) {
       setFilterBand(filterResult);
     } else {
       setFilterBand(bands);
-    }
+    } */
     /*     console.log(sortDir); */
   }, [filterGenre, filterDay, sortDir]);
 
@@ -137,6 +110,7 @@ export async function getStaticProps() {
   return {
     props: {
       bands: data,
+      bandsReset: data,
       genres,
       playingWhenData,
     },
