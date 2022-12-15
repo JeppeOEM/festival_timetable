@@ -6,6 +6,7 @@ import FilterBox from "../../components/Line-up/FilterBox";
 import Test from "../../components/Line-up/Test";
 import playingWhen from "../../js_functions/playingWhen";
 import sortList from "../../js_functions/sortList";
+import filterPerDay from "../../js_functions/filterPerDay";
 
 import changeSortDir from "../../js_functions/changeSortDir";
 import getRandomImage from "../../js_functions/getRandomImage";
@@ -27,31 +28,6 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   const whatDay = ["allDays", "mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
-  function filterPerDay(currentList) {
-    let getBands = [];
-
-    const dayList = actData.filter((act) => {
-      if (filterDay === "allDays") {
-        return act;
-      }
-      if (act.day === filterDay) {
-        return act;
-      }
-    });
-
-    getBands = currentList.filter((band) => {
-      for (let i = 0; i < dayList.length; i++) {
-        if (band.name === dayList[i].id) {
-          return band;
-        }
-      }
-    });
-
-    console.log(getBands);
-
-    return getBands;
-  }
-
   function filterAllGenres(bands, filterGenre) {
     const result = bands.filter((band) => {
       if (filterGenre.length !== 0) {
@@ -72,7 +48,8 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
     setFilterBand(bands);
     let filterResult = filterAllGenres(bands, filterGenre);
     console.log("sortDIR", sortDir);
-    filterResult = filterPerDay(filterResult);
+
+    filterResult = filterPerDay(filterResult, actData, filterDay);
 
     setFilterBand(filterResult);
 
@@ -121,7 +98,9 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
       <FilterBox setFilter={setFilterGenre} filterList={filterGenre} msg='Filter by genre' />
       {/*       <FilterBox setFilter={setFilterDay} filterList={filterDay} msg='Filter by day' /> */}
       {filterSettings && <BandList bands={filterBand} filterBand={filterBand} actData={actData} />}
-      {!filterSettings && <BandListGenres bands={filterBand} filterBand={filterBand} actData={actData} />}
+      {!filterSettings && (
+        <BandListGenres bands={filterBand} filterBand={filterBand} actData={actData} filterDay={filterDay} />
+      )}
     </section>
   );
 }
