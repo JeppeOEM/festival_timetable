@@ -1,7 +1,6 @@
-export default function FilterBox({ msg, filterList, setFilter }) {
+export default function FilterBox({ filterList, setFilter }) {
   return (
     <>
-      <h1>{msg}</h1>
       <ul>
         {filterList.map((artist, index) => (
           <li key={index}>

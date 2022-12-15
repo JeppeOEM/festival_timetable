@@ -7,7 +7,7 @@ import Test from "../../components/Line-up/Test";
 import playingWhen from "../../js_functions/playingWhen";
 import sortList from "../../js_functions/sortList";
 import filterPerDay from "../../js_functions/filterPerDay";
-import combineData from "../../js_functions/combineData";
+
 import changeSortDir from "../../js_functions/changeSortDir";
 import getRandomImage from "../../js_functions/getRandomImage";
 
@@ -25,8 +25,19 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
   const [sortDir, setSortDir] = useState("1");
   const [filterSettings, setFilterSettings] = useState(true);
   const [resetData, setResetData] = useState(bandsReset);
+  const [shownDays, setShownDays] = useState([]);
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   const whatDay = ["all", "mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+
+  function daysShowed(result) {
+    const getDays = result.map((band) => {
+      return band.day;
+    });
+    const getDaysList = [...new Set(getDays)]; //removes duplicates
+    console.log("getDaysList", getDaysList);
+    setShownDays(getDaysList);
+    return getDaysList;
+  }
 
   function filterAllGenres(bands, filterGenre) {
     const result = bands.filter((band) => {
@@ -46,20 +57,17 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
   useEffect(() => {
     console.log(filterGenre);
     setFilterBand(bands);
-    let filterResult = filterAllGenres(bands, filterGenre);
-    console.log("sortDIR", sortDir);
 
-    filterResult = filterPerDay(filterResult, actData, filterDay, "band");
-
+    let filterResult = filterPerDay(bands, actData, filterDay, "band");
     setFilterBand(filterResult);
+    filterResult = filterAllGenres(bands, filterGenre);
 
-    console.log(filterBand);
-    console.log(filterDay);
-    console.log(filterGenre);
-
+    //loads all bands on a new screen
     if (filterBand.length == 0 && filterDay.length == 0 && filterGenre == 0) {
-      //loads all bands on a new sreenn
       setFilterBand(bands);
+    } else {
+      setFilterBand(filterResult);
+      daysShowed(filterResult);
     }
   }, [filterGenre, filterDay, sortDir]);
 
@@ -88,21 +96,20 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
         type='Days'
       />
       <Dropdown
-        changeView={setFilterSettings}
+        /*     changeView={setFilterSettings} */
         filterThis={genresDropdown}
         setFilter={setFilterGenre}
         filterList={filterGenre}
         type='Genres'
       />
-      <FilterBox setFilter={setFilterGenre} filterList={filterGenre} msg='Filter by genre' />
-      {/*       <FilterBox setFilter={setFilterDay} filterList={filterDay} msg='Filter by day' /> */}
-      {filterSettings && <BandList bands={filterBand} filterBand={filterBand} actData={actData} />}
+      <FilterBox setFilter={setFilterGenre} filterList={filterGenre} />
+      {filterSettings && <BandList bands={filterBand} filterResult={filterBand} actData={actData} />}
       {!filterSettings && (
         <BandListGenres
+          shownDays={shownDays}
           allBands={bands}
-          bands={bands}
-          filterBand={filterBand}
-          actData={actData}
+          bands={filterBand}
+          filterResult={filterBand}
           filterDay={filterDay}
         />
       )}
@@ -120,8 +127,25 @@ export async function getStaticProps() {
   });
 
   const genres = [...new Set(genreData)]; // remove duplicates from the array
-  const playingWhenData = playingWhen(dataSchedule);
-  const combined = combineData(data, playingWhenData);
+
+  const playingWhenData = playingWhen(dataSchedule); // extracting information from the diffrent acts
+  const combined = combineData(data, playingWhenData); // act data is added to the band data
+
+  function combineData(data, playingWhenData) {
+    let combinedList = data.map((band) => {
+      for (let i = 0; i < playingWhenData.length; i++) {
+        if (band.name == playingWhenData[i].id) {
+          band.day = playingWhenData[i].day;
+          band.scene = playingWhenData[i].scene;
+          band.start = playingWhenData[i].start;
+          band.end = playingWhenData[i].end;
+        }
+      }
+
+      return band;
+    });
+    return combinedList;
+  }
 
   return {
     props: {
