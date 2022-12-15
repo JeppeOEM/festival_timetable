@@ -1,4 +1,4 @@
-function filterPerDay(currentList, actData, filterDay) {
+function filterPerDay(currentList, actData, filterDay, returnActOrBand) {
   let getBands = [];
 
   const dayList = actData.filter((act) => {
@@ -12,8 +12,12 @@ function filterPerDay(currentList, actData, filterDay) {
 
   getBands = currentList.filter((band) => {
     for (let i = 0; i < dayList.length; i++) {
-      if (band.name === dayList[i].id) {
+      console.log(returnActOrBand);
+      if (band.name === dayList[i].id && returnActOrBand === "band") {
+        //return band without info on days
         return band;
+      } else if (band.name === dayList[i].id && returnActOrBand === "act") {
+        return dayList[i];
       }
     }
   });

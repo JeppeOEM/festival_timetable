@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import s from "../../styles/components/schedule/ActList.module.sass";
 
 import Acts from "./Acts";
-import DropdownDay from "./DropdownDay";
+import DropdownDayScene from "../Schedule/DropdownDayScene";
 
 function ActList(props) {
   const [filterDay, setFilterDay] = useState("mon");
@@ -10,10 +10,11 @@ function ActList(props) {
   let midgard = props.actData[0].act["Midgard"];
   let jotunheim = props.actData[0].act["Jotunheim"];
   let vanaheim = props.actData[0].act["Vanaheim"];
+  const whatDay = ["all", "mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
   return (
     <>
-      <DropdownDay setFilter={setFilterDay} />
+      {<DropdownDayScene setFilter={setFilterDay} whatDay={whatDay} />}
       <section className={s.actBox}>
         {/*       MIDGARD */}
         {filterDay === "mon" && <Acts filterDay={filterDay} day={midgard.mon}></Acts>}
