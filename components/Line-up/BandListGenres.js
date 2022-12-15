@@ -121,7 +121,7 @@ function DisplayDay(bands) {
   </ul>;
 }
 
-function filterPerDay(currentList, actData, filterDay, returnActOrBand) {
+/* function filterPerDay(currentList, actData, filterDay, returnActOrBand) {
   let getBands = [];
 
   const dayList = actData.filter((act) => {
@@ -149,3 +149,4 @@ function filterPerDay(currentList, actData, filterDay, returnActOrBand) {
 
   return getBands;
 }
+ */

@@ -63,19 +63,18 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
     }
   }, [filterGenre, filterDay, sortDir]);
 
-  function changeView(setFilterSettings, setFilterBand, resetData) {
+  function changeView(setFilterSettings, setFilterBand, bands) {
     setFilterSettings(true);
-    setFilterDay([]);
-    setFilterGenre([]);
-    console.log(resetData);
-    setFilterBand(resetData);
+
+    console.log(bands);
+    setFilterBand(bands);
     console.log(filterSettings);
     console.log("FUCK");
   }
 
   return (
     <section>
-      <button onClick={() => changeView(setFilterSettings, setFilterBand, resetData)}>A-Z</button>
+      <button onClick={() => changeView(setFilterSettings, setFilterBand, bands)}>A-Z</button>
       <p>filter: {filterGenre}</p>
       <p>filter: {filterDay}</p>
       <img src='public\img\AdobeStock_97778068.jpeg' alt='' width='300px' height='200px' />
