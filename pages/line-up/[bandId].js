@@ -3,6 +3,7 @@ import kebabCase from "../../js_functions/kebabCase";
 import classes from "./BandId.module.sass";
 import playingWhen from "../../js_functions/playingWhen";
 import DayPlaying from "../../components/Line-up/DayPlaying";
+
 import { useState } from "react";
 
 //WEIRD NAMING ALERT
@@ -17,7 +18,6 @@ function BandId({ p, genre, name, logo, logoCredits, members, bio }) {
       }
     }
   }
-
   const getInfo = bandScheduleInfo(p);
   const { day, scene, start, end } = getInfo;
   console.log(getInfo);
@@ -36,6 +36,7 @@ function BandId({ p, genre, name, logo, logoCredits, members, bio }) {
       {
         <>
           <figure className={classes.logo}>
+            {/*            <Image src='http://localhost:3000/random-img' alt='some' fill></Image> */}
             <Image src={logo} alt={name} fill />
           </figure>
           <p>{logoCredits}</p>
@@ -79,7 +80,7 @@ export async function getServerSideProps(content) {
     logo = "/" + bandData[0].logo;
   }
 
-  const playingWhenResult = playingWhen(dataSchedule);
+  const playingWhenResult = playingWhen(dataSchedule); // remaps the schedule data for the scenes to one list, proud of this function :D
 
   /*   console.log(result); */
 

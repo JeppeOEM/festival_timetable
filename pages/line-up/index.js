@@ -82,10 +82,10 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
 
   return (
     <section>
+      <h1>Line-up</h1>
       <button onClick={() => changeView(setFilterSettings, setFilterBand, bands)}>A-Z</button>
       <p>filter: {filterGenre}</p>
       <p>filter: {filterDay}</p>
-      <img src='public\img\AdobeStock_97778068.jpeg' alt='' width='300px' height='200px' />
       <button onClick={() => changeSortDir(sortDir, setSortDir)}>Change Direction</button>
       w
       <DropdownDay
@@ -96,14 +96,16 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
         type='Days'
       />
       <Dropdown
-        /*     changeView={setFilterSettings} */
+        changeView={setFilterSettings}
         filterThis={genresDropdown}
         setFilter={setFilterGenre}
         filterList={filterGenre}
         type='Genres'
       />
       <FilterBox setFilter={setFilterGenre} filterList={filterGenre} />
-      {filterSettings && <BandList bands={filterBand} filterResult={filterBand} actData={actData} />}
+      {filterSettings && (
+        <BandList bands={filterBand} filterResult={filterBand} actData={actData} filterGenre={filterGenre} />
+      )}
       {!filterSettings && (
         <BandListGenres
           shownDays={shownDays}
@@ -150,7 +152,6 @@ export async function getStaticProps() {
   return {
     props: {
       bands: combined,
-
       genres,
       playingWhenData,
     },

@@ -12,12 +12,27 @@
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr))
 
 .Band
+
+    position: relative
+    text-align: center
     background-color: aqua
     border: 1px solid black
     border-radius: 3px
     max-width: 100%
-    min-height: 200px
-    height: auto
+    min-height: 12rem
+
+.BandName
+    margin: 0
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
 
 .letter
     margin-left: 10%
+
+@media screen and (max-width: 500px)
+    .Band
+        background-color: green
+        min-height: 0rem
+        height: 4rem

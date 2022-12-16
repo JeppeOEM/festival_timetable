@@ -19,48 +19,48 @@ function BandList({ shownDays, bands, filterDay, filterResult, filterGenre }) {
       {isDayinList("mon", filterDay) && (
         <>
           {shownDays.includes("mon") && <h2 className={BandGrid.Header}>Monday</h2>}
-          <DisplayBand days={daysShowed} setDaysShowed={setDaysShowed} day='mon' bands={bands}></DisplayBand>
+          <DisplayBand day='mon' bands={bands}></DisplayBand>
         </>
       )}
       {isDayinList("tue", filterDay) && (
         <>
           {}
           {shownDays.includes("tue") && <h2 className={BandGrid.Header}>Tuesday</h2>}
-          <DisplayBand days={daysShowed} setDaysShowed={setDaysShowed} day='tue' bands={bands}></DisplayBand>
+          <DisplayBand day='tue' bands={bands}></DisplayBand>
         </>
       )}
 
       {isDayinList("wed", filterDay) && (
         <>
           {shownDays.includes("wed") && <h2 className={BandGrid.Header}>Wednesday</h2>}
-          <DisplayBand days={daysShowed} setDaysShowed={setDaysShowed} day='wed' bands={bands}></DisplayBand>
+          <DisplayBand day='wed' bands={bands}></DisplayBand>
         </>
       )}
       {isDayinList("thu", filterDay) && (
         <>
           {shownDays.includes("thu") && <h2 className={BandGrid.Header}>Thursday</h2>}
-          <DisplayBand days={daysShowed} setDaysShowed={setDaysShowed} day='thu' bands={bands}></DisplayBand>
+          <DisplayBand day='thu' bands={bands}></DisplayBand>
         </>
       )}
 
       {isDayinList("fri", filterDay) && (
         <>
           {shownDays.includes("fri") && <h2 className={BandGrid.Header}>Friday</h2>}
-          <DisplayBand days={daysShowed} setDaysShowed={setDaysShowed} day='fri' bands={bands}></DisplayBand>
+          <DisplayBand day='fri' bands={bands}></DisplayBand>
         </>
       )}
 
       {isDayinList("sat", filterDay) && (
         <>
           {shownDays.includes("sat") && <h2 className={BandGrid.Header}>Saturday</h2>}
-          <DisplayBand days={daysShowed} setDaysShowed={setDaysShowed} day='sat' bands={bands}></DisplayBand>
+          <DisplayBand day='sat' bands={bands}></DisplayBand>
         </>
       )}
 
       {isDayinList("sun", filterDay) && (
         <>
           {shownDays.includes("sun") && <h2 className={BandGrid.Header}>Sunday</h2>}
-          <DisplayBand days={daysShowed} setDaysShowed={setDaysShowed} day='sun' bands={bands}></DisplayBand>
+          <DisplayBand day='sun' bands={bands}></DisplayBand>
         </>
       )}
     </>
@@ -71,7 +71,7 @@ function BandList({ shownDays, bands, filterDay, filterResult, filterGenre }) {
 
     return (
       <>
-        <section className={BandGrid.BandList}>
+        <section className={BandGrid.BandGrid}>
           {bands.map((band) => {
             if (day === band.day) {
               return (
