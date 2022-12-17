@@ -1,0 +1,56 @@
+@import 'styles/variables.sass'
+
+.entirePage
+    margin-bottom: 5%
+
+.selectorBtn.active
+    color: yellow
+
+.big
+    text-align: center
+    font-size: $header
+
+.selection
+    margin-left: 5%
+
+.hr
+    margin-left: 5%
+    margin-right: 5%
+
+/* .option option
+ color: red */
+
+.selection
+    display: flex
+    flex-direction: row
+
+.selection span
+
+    padding-right: 1rem
+    a
+        color: $color
+        &:hover
+            cursor: pointer
+            color: $accent
+
+.selectorBtn
+    font-size: $mediumP
+
+.select
+    width: 100vw
+    margin-left: 5%
+    display: flex
+    flex-wrap: wrap
+    flex-direction: row
+    a
+        span
+            color: red
+            font-size: $smallP
+            padding-right: 1rem
+            @hover
+                cursor: pointer
+                color: $accent
+
+@media (max-width: $mobile)
+    .big
+        display: none

@@ -18,48 +18,76 @@ function BandList({ shownDays, bands, filterDay, filterResult, filterGenre }) {
     <>
       {isDayinList("mon", filterDay) && (
         <>
-          {shownDays.includes("mon") && <h2 className={BandGrid.Header}>Monday</h2>}
+          {shownDays.includes("mon") && (
+            <h2 id='Monday' className={BandGrid.info}>
+              Monday
+            </h2>
+          )}
           <DisplayBand day='mon' bands={bands}></DisplayBand>
         </>
       )}
       {isDayinList("tue", filterDay) && (
         <>
           {}
-          {shownDays.includes("tue") && <h2 className={BandGrid.Header}>Tuesday</h2>}
+          {shownDays.includes("tue") && (
+            <h2 id='Tuesday' className={BandGrid.info}>
+              Tuesday
+            </h2>
+          )}
           <DisplayBand day='tue' bands={bands}></DisplayBand>
         </>
       )}
 
       {isDayinList("wed", filterDay) && (
         <>
-          {shownDays.includes("wed") && <h2 className={BandGrid.Header}>Wednesday</h2>}
+          {shownDays.includes("wed") && (
+            <h2 id='Wednesday' className={BandGrid.info}>
+              Wednesday
+            </h2>
+          )}
           <DisplayBand day='wed' bands={bands}></DisplayBand>
         </>
       )}
       {isDayinList("thu", filterDay) && (
         <>
-          {shownDays.includes("thu") && <h2 className={BandGrid.Header}>Thursday</h2>}
+          {shownDays.includes("thu") && (
+            <h2 id='Thursday' className={BandGrid.info}>
+              Thursday
+            </h2>
+          )}
           <DisplayBand day='thu' bands={bands}></DisplayBand>
         </>
       )}
 
       {isDayinList("fri", filterDay) && (
         <>
-          {shownDays.includes("fri") && <h2 className={BandGrid.Header}>Friday</h2>}
+          {shownDays.includes("fri") && (
+            <h2 id='Friday' className={BandGrid.info}>
+              Friday
+            </h2>
+          )}
           <DisplayBand day='fri' bands={bands}></DisplayBand>
         </>
       )}
 
       {isDayinList("sat", filterDay) && (
         <>
-          {shownDays.includes("sat") && <h2 className={BandGrid.Header}>Saturday</h2>}
+          {shownDays.includes("sat") && (
+            <h2 id='Saturday' className={BandGrid.info}>
+              Saturday
+            </h2>
+          )}
           <DisplayBand day='sat' bands={bands}></DisplayBand>
         </>
       )}
 
       {isDayinList("sun", filterDay) && (
         <>
-          {shownDays.includes("sun") && <h2 className={BandGrid.Header}>Sunday</h2>}
+          {shownDays.includes("sun") && (
+            <h2 id='Sunday' className={BandGrid.info}>
+              Sunday
+            </h2>
+          )}
           <DisplayBand day='sun' bands={bands}></DisplayBand>
         </>
       )}
@@ -114,7 +142,7 @@ export default BandList;
 function AlphabetLetter({ bands, letter }) {
   return (
     <>
-      <h2 className={BandGrid.letter}>{letter}</h2>
+      <h2 id=""className={BandGrid.letter}>{letter}</h2>
       <section className={BandGrid.BandGrid}>
         <BandAlphabet bands={bands} letter={letter}></BandAlphabet>
       </section>

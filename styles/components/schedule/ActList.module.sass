@@ -1,6 +1,76 @@
-.ActList
-    color: red
 
+@import 'styles/variables.sass'
 .actBox
+    width: 100%
     display: flex
     flex-direction: row
+    justify-content: center
+    transform: translateX(-5%)
+
+.scenes
+
+    margin: 0
+    display: flex
+    flex-direction: row
+
+    section
+        width: 33.3%
+
+    ul
+        margin-top: 0
+
+        li
+
+            display: flex
+            justify-content: center
+            align-items: center
+
+            h2
+
+                margin: 0
+
+    li
+
+        height: 10rem
+        border: 1px solid $accent
+        list-style: none
+        padding: 1rem
+
+        a
+            text-decoration: none
+            color: $white
+
+.timeUl
+
+    li
+
+        height: 10rem
+        border: 1px solid $accent
+        list-style: none
+        padding: 1rem
+
+        .time
+            width: 10%
+            display: block
+            width: 0rem
+            border: 1px solid $black
+            color: $accent
+
+        p
+            margin: 0
+            padding: 0
+            transform: translateY(-1.5rem)
+
+/* ACTS */
+
+.sceneName
+    text-align: center
+    padding-left: 2rem
+    height: 5rem
+    margin: 0
+
+.timeHeader
+    text-align: center
+    padding-left: 2rem
+    height: 4rem
+    margin: 0

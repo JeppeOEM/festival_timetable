@@ -1,38 +1,73 @@
+@import 'styles/variables.sass'
 
 .BandGrid
     display: grid
-    margin-left: 10%
-    margin-right: 10%
+    margin-left: 5%
+    margin-right: 5%
     margin-top: 4%
     border-radius: 3px
     border: 1px solid rgb(22, 3, 3)
 
             /* Use  display property as grid*/
-    gap: 5px
+    gap: 2rem
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr))
 
 .Band
 
     position: relative
-    text-align: center
-    background-color: aqua
+
     border: 1px solid black
     border-radius: 3px
     max-width: 100%
     min-height: 12rem
 
 .BandName
+    text-decoration: none
+    color: white
+    font-size: 1rem
     margin: 0
+    padding-left: 1rem
     position: absolute
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%)
+    bottom: 0
+    left: 0
+    h2
+        margin: 0
+        padding: 0
 
-.letter
-    margin-left: 10%
+    h3
+        margin: 0
+        padding: 0
+        padding-bottom: 0.5rem
+
+.info
+    margin-left: 5%
 
 @media screen and (max-width: 500px)
+
+    .BandGrid
+        display: flex
+        flex-direction: column
+        min-height: 6rem
+        margin-left: 0
+        margin-right: 0
+
     .Band
-        background-color: green
-        min-height: 0rem
-        height: 4rem
+        min-height: 4rem
+
+    .Band figure
+        display: none
+
+    .nameBox
+        h2
+            margin-top: 0
+            padding: 0
+            font-size: $mobilemediumP
+        h3
+            font-size: $mobilesmallP
+            margin: 0
+            padding: 0
+
+    .Band
+
+        font-size: $smallP
+        padding: 0rem

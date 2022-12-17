@@ -15,13 +15,19 @@ function Band(props) {
 
   return (
     <article className={BandGrid.Band}>
-      <Image src={logo} alt={logo} fill />
-
+      <div class={BandGrid["gradient-bg"]}>
+        <figure classname={BandGrid.img}>
+          <Image class src={logo} alt={logo} fill />
+        </figure>
+      </div>
       <Link
         className={BandGrid.BandName}
         href={{ pathname: `/line-up/[band]` }}
         as={`line-up/${kebabCase(props.name)}`}>
-        <h2>{props.name}</h2>
+        <div className={BandGrid.nameBox}>
+          <h2>{props.name}</h2>
+          <h3>{props.genre}</h3>
+        </div>
       </Link>
     </article>
   );

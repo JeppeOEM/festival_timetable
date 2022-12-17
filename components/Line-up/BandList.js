@@ -3,9 +3,6 @@ import BandGrid from "../../styles/components/line-up/BandGrid.module.sass";
 import { useEffect, useState } from "react";
 
 // prettier-ignore
-let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-
-// prettier-ignore
 function BandList({bands, filterGenre}) {
 
 const [hideLetters, setHideLetters] = useState(true);  
@@ -15,12 +12,12 @@ useEffect(() => {
 
 if(filterGenre == 0){
 setHideLetters(true)
-console.log("HIDELETTERS", hideLetters);
+console.log("filterGenre == 0", hideLetters);
 console.log("FILTER GENRE", filterGenre);
 }
 else{
   setHideLetters(false)
-  console.log("HIDELETTERS", hideLetters);
+  console.log("!!!!filterGenre == 0", hideLetters);
   console.log("FILTER GENRE", filterGenre);
 }
 
@@ -109,7 +106,9 @@ function CompleteListWithLetters({ bands, filterGenre }) {
 function AlphabetLetter({ bands, letter }) {
   return (
     <>
-      <h2 className={BandGrid.letter}>{letter}</h2>
+      <h2 id={`${letter.toLowerCase()}`} className={BandGrid.info}>
+        {letter}
+      </h2>
       <section className={BandGrid.BandGrid}>
         <BandAlphabet bands={bands} letter={letter}></BandAlphabet>
       </section>

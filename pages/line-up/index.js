@@ -10,8 +10,11 @@ import filterPerDay from "../../js_functions/filterPerDay";
 
 import changeSortDir from "../../js_functions/changeSortDir";
 import getRandomImage from "../../js_functions/getRandomImage";
-
 import DropdownDay from "../../components/Line-up/DropdownDay";
+import DaySelector from "../../components/Line-up/DaySelector.js";
+import AlphabetSelector from "../../components/Line-up/AlphabetSelector.js";
+
+import index from "../../styles/components/line-up/index.module.sass";
 
 import { useEffect, useState } from "react";
 
@@ -69,53 +72,79 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
       setFilterBand(filterResult);
       daysShowed(filterResult);
     }
-  }, [filterGenre, filterDay, sortDir]);
+  }, [filterSettings, filterGenre, filterDay, sortDir]);
 
-  function changeView(setFilterSettings, setFilterBand, bands) {
+  function changeView(setFilterSettings, setFilterBand, bands, bool) {
     setFilterSettings(true);
-
+    console.log("AZ", filterSettings);
     console.log(bands);
     setFilterBand(bands);
-    console.log(filterSettings);
-    console.log("FUCK");
+  }
+
+  function changeView2(setFilterSettings, setFilterBand, bands, bool) {
+    setFilterSettings(false);
+
+    console.log(bands);
+    setFilterDay("all");
+
+    console.log("DAYS", filterSettings);
   }
 
   return (
-    <section>
-      <h1>Line-up</h1>
-      <button onClick={() => changeView(setFilterSettings, setFilterBand, bands)}>A-Z</button>
-      <p>filter: {filterGenre}</p>
-      <p>filter: {filterDay}</p>
-      <button onClick={() => changeSortDir(sortDir, setSortDir)}>Change Direction</button>
-      w
-      <DropdownDay
-        changeView={setFilterSettings}
-        setFilter={setFilterDay}
-        filterList={filterDay}
-        whatDay={whatDay}
-        type='Days'
-      />
-      <Dropdown
-        changeView={setFilterSettings}
-        filterThis={genresDropdown}
-        setFilter={setFilterGenre}
-        filterList={filterGenre}
-        type='Genres'
-      />
-      <FilterBox setFilter={setFilterGenre} filterList={filterGenre} />
-      {filterSettings && (
-        <BandList bands={filterBand} filterResult={filterBand} actData={actData} filterGenre={filterGenre} />
-      )}
-      {!filterSettings && (
-        <BandListGenres
-          shownDays={shownDays}
-          allBands={bands}
-          bands={filterBand}
-          filterResult={filterBand}
-          filterDay={filterDay}
-        />
-      )}
-    </section>
+    <>
+      <section className={index.entirePage}>
+        <h1 className={index.big}>Line-up</h1>
+
+        {/*       <p>filter: {filterGenre}</p>
+      <p>filter: {filterDay}</p> */}
+        {/*       <button onClick={() => changeSortDir(sortDir, setSortDir)}>Change Direction</button> */}
+        <div className={index.selection}>
+          <span
+            className={`${index.selectorBtn} ${filterSettings && index.active}`} //if filterSettings is true, add the active class
+            onClick={() => changeView(setFilterSettings, setFilterBand, bands)}>
+            A-Z
+          </span>
+          <span
+            className={`${index.selectorBtn} ${!filterSettings && index.active}`}
+            onClick={() => changeView2(setFilterSettings, setFilterBand, bands)}>
+            DAYS
+          </span>
+
+          <Dropdown
+            changeView={setFilterSettings}
+            filterThis={genresDropdown}
+            setFilter={setFilterGenre}
+            filterList={filterGenre}
+            type='Genres'
+          />
+          <DropdownDay
+            changeView={setFilterSettings}
+            setFilter={setFilterDay}
+            filterList={filterDay}
+            whatDay={whatDay}
+            type='Days'
+          />
+        </div>
+
+        <hr className={index.hr}></hr>
+        {filterSettings ? <AlphabetSelector></AlphabetSelector> : <DaySelector></DaySelector>}
+
+        <FilterBox setFilter={setFilterGenre} filterList={filterGenre} />
+        {filterSettings && (
+          <BandList bands={filterBand} filterResult={filterBand} actData={actData} filterGenre={filterGenre} />
+        )}
+
+        {!filterSettings && (
+          <BandListGenres
+            shownDays={shownDays}
+            allBands={bands}
+            bands={filterBand}
+            filterResult={filterBand}
+            filterDay={filterDay}
+          />
+        )}
+      </section>
+    </>
   );
 }
 

@@ -1,4 +1,5 @@
 export default function handler(req, res) {
+  console.log(res);
   const fs = require("fs");
 
   const files = fs.readdirSync("public/img");

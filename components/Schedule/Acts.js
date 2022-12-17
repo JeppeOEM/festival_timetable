@@ -1,24 +1,28 @@
 import React from "react";
-import s from "../../styles/components/schedule/Acts.module.sass";
+import actList from "../../styles/components/schedule/ActList.module.sass";
 import Link from "next/link";
 import kebabCase from "../../js_functions/kebabCase";
 
-function Acts(props) {
+function Acts({ stage, day }) {
   return (
-    <section className={s.acts}>
-      <h1>{props.filterDay}</h1>
-      <ul className={s.ActList}>
-        {props.day.map((act) => {
+    <section>
+      <h2 class={actList.sceneName}>{stage}</h2>
+      <ul className={actList.ActList}>
+        {day.map((act) => {
           return (
-            <li key={act.act + act.start + act.end}>
-              {act.act === "break" ? (
-                <h2>{act.start} Break</h2>
-              ) : (
+            <>
+              {act.act !== "break" ? (
                 <Link href={{ pathname: `/line-up/[band]` }} as={`line-up/${kebabCase(act.act)}`}>
-                  <h2>{act.cancelled ? act.act : act.start + " " + act.act + " cancelled"}</h2>
+                  <li key={act.act + act.start + act.end}>
+                    <h2>{act.act}</h2>
+                  </li>
                 </Link>
+              ) : (
+                <li>
+                  <h2>Break</h2>
+                </li>
               )}
-            </li>
+            </>
           );
         })}
       </ul>
