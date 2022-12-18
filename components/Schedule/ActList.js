@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import actList from "../../styles/components/schedule/ActList.module.sass";
 import TimeBar from "./TimeBar";
+import schedule from "../../styles/components/schedule/Schedule.module.sass";
 
 import Acts from "./Acts";
+
 import DropdownDayScene from "../Schedule/DropdownDayScene";
 
 function ActList(props) {
@@ -12,11 +14,27 @@ function ActList(props) {
   let jotunheim = props.actData[0].act["Jotunheim"];
   let vanaheim = props.actData[0].act["Vanaheim"];
   const whatDay = ["all", "mon", "tue", "wed", "thu", "fri", "sat", "sun"];
-
+  function changeDay(day) {
+    setFilterDay(day);
+  }
   return (
     <>
       {/* {<DropdownDayScene setFilter={setFilterDay} whatDay={whatDay} />} */}
+      <div className={schedule.days}>
+        <span onClick={() => changeDay("mon")}>Monday</span>
 
+        <span onClick={() => changeDay("tue")}>Tuesday</span>
+
+        <span onClick={() => changeDay("wed")}>Wednesday</span>
+
+        <span onClick={() => changeDay("thu")}>Thursday</span>
+
+        <span onClick={() => changeDay("fri")}>Friday</span>
+
+        <span onClick={() => changeDay("sat")}>Saturday</span>
+
+        <span onClick={() => changeDay("sun")}>Sunday</span>
+      </div>
       <section className={actList.actBox}>
         <TimeBar day={filterDay}></TimeBar>
         {/*       MIDGARD */}

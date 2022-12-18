@@ -1,9 +1,10 @@
 import actList from "../../styles/components/schedule/ActList.module.sass";
+import Day from "./Day";
 
 function TimeBar({ day }) {
   return (
     <div className={actList.timeDiv}>
-      <h2 className={actList.timeHeader}>{day}</h2>
+      <Day day={day} />
       <ul className={actList.timeUl}>
         <li className={actList.time}>
           <p>00:00</p>

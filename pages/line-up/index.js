@@ -125,11 +125,11 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
             type='Days'
           />
         </div>
-
         <hr className={index.hr}></hr>
         {filterSettings ? <AlphabetSelector></AlphabetSelector> : <DaySelector></DaySelector>}
-
+        <hr className={index.hr}></hr>
         <FilterBox setFilter={setFilterGenre} filterList={filterGenre} />
+
         {filterSettings && (
           <BandList bands={filterBand} filterResult={filterBand} actData={actData} filterGenre={filterGenre} />
         )}

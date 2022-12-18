@@ -30,11 +30,13 @@
                 margin: 0
 
     li
-
+        width: 15rem
         height: 10rem
         border: 1px solid $accent
         list-style: none
         padding: 1rem
+        padding-right: 2rem
+        padding-left: 2rem
 
         a
             text-decoration: none
@@ -71,6 +73,22 @@
 
 .timeHeader
     text-align: center
-    padding-left: 2rem
+    padding-left: 2.5rem
     height: 4rem
-    margin: 0
+.date
+    padding-left: 2.5rem
+
+@media screen and (max-width: 1250px)
+    .scenes
+        li
+            width: 5rem
+            height: 10rem
+
+@media screen and (max-width: 1000px)
+    .scenes
+        li
+            width: 10rem
+            height: 10rem
+    .timeUl
+
+        position: sticky

@@ -4,6 +4,8 @@ import classes from "./BandId.module.sass";
 import playingWhen from "../../js_functions/playingWhen";
 import DayPlaying from "../../components/Line-up/DayPlaying";
 
+import bandId from "../../styles/pages/bandId.module.sass";
+
 import { useState } from "react";
 
 //WEIRD NAMING ALERT
@@ -22,26 +24,33 @@ function BandId({ p, genre, name, logo, logoCredits, members, bio }) {
   const { day, scene, start, end } = getInfo;
   console.log(getInfo);
 
+  const membersMapped = members.map((member) => {
+    return member + " ";
+  });
+
   return (
-    <section>
-      <h1>{name}</h1>;<h3>Genre: {genre}</h3>;<DayPlaying></DayPlaying>
-      <h2>{scene}</h2>
-      <h2>{day}</h2>
-      <h2>
-        {start}:{end}
-      </h2>
-      <ul></ul>
-      <p>{bio}</p>
-      <p>{members}</p>
+    <section className={bandId.section}>
+      <h1 className={bandId.header}>{name}</h1>
       {
         <>
-          <figure className={classes.logo}>
+          <figure className={bandId.logo}>
             {/*            <Image src='http://localhost:3000/random-img' alt='some' fill></Image> */}
             <Image src={logo} alt={name} fill />
           </figure>
-          <p>{logoCredits}</p>
+          <p className={bandId.italic}>{logoCredits}</p>
         </>
       }
+      <h3>Genre: {genre}</h3>
+      <h3>Scene: {scene} </h3>
+      <div className={bandId.inline}>
+        <DayPlaying day={day}></DayPlaying>{" "}
+        <h3 className={bandId.inline}>
+          {start} : {end}
+        </h3>
+        <h3>Members: {membersMapped}</h3>
+      </div>
+
+      <p className={bandId.fontSize}>{bio}</p>
     </section>
   );
 }

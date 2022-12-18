@@ -1,1 +1,4 @@
-BUGS: fix displaying days and genre empty space
+BUGS: fix displaying days and genre empty space'
+create searchbar
+
+make selection sticky

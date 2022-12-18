@@ -1,16 +1,23 @@
 @import 'styles/variables.sass'
 
 .entirePage
+    margin-top: 0rem
+    padding-top: 0rem
     margin-bottom: 5%
 
 .selectorBtn.active
-    color: yellow
+    color: red
+    text-decoration: underline
 
 .big
     text-align: center
     font-size: $header
 
 .selection
+
+    padding-top: 0rem
+    background-color: $background
+
     margin-left: 5%
 
 .hr
@@ -37,19 +44,22 @@
     font-size: $mediumP
 
 .select
+    margin: 20px
+    &:hover
+        color: yellow
+
+.select
     width: 100vw
     margin-left: 5%
     display: flex
     flex-wrap: wrap
     flex-direction: row
     a
+        text-decoration: none
         span
             color: red
             font-size: $smallP
             padding-right: 1rem
-            @hover
-                cursor: pointer
-                color: $accent
 
 @media (max-width: $mobile)
     .big

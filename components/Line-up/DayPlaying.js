@@ -1,15 +1,15 @@
 import React from "react";
-
+import bandId from "../../styles/pages/bandId.module.sass";
 function DayPlaying({ day }) {
   return (
     <>
-      {day === "mon" && <p>playing Monday</p>}
-      {day === "tue" && <p>playing Tuesday</p>}
-      {day === "wed" && <p>playing Wednesday</p>}
-      {day === "thu" && <p>playing Thursday</p>}
-      {day === "fri" && <p>playing Friday</p>}
-      {day === "sat" && <p>playing Saturday</p>}
-      {day === "sun" && <p>playing Sunday</p>}
+      {day === "mon" && <h3 className={bandId.inline}>Playing Monday </h3>}
+      {day === "tue" && <h3 className={bandId.inline}>Playing Tuesday </h3>}
+      {day === "wed" && <h3 className={bandId.inline}>Playing Wednesday </h3>}
+      {day === "thu" && <h3 className={bandId.inline}>Playing Thursday </h3>}
+      {day === "fri" && <h3 className={bandId.inline}>Playing Friday </h3>}
+      {day === "sat" && <h3 className={bandId.inline}>Playing Saturday </h3>}
+      {day === "sun" && <h3 className={bandId.inline}>Playing Sunday </h3>}
     </>
   );
 }
