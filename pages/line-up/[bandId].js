@@ -1,6 +1,6 @@
 import Image from "next/image";
 import kebabCase from "../../js_functions/kebabCase";
-import classes from "./BandId.module.sass";
+
 import playingWhen from "../../js_functions/playingWhen";
 import DayPlaying from "../../components/Line-up/DayPlaying";
 
@@ -25,12 +25,12 @@ function BandId({ p, genre, name, logo, logoCredits, members, bio }) {
   console.log(getInfo);
 
   const membersMapped = members.map((member) => {
-    return member + " ";
+    // FIX LAST COMMA
+    return member + ", ";
   });
 
   return (
     <section className={bandId.section}>
-      <h1 className={bandId.header}>{name}</h1>
       {
         <>
           <figure className={bandId.logo}>
@@ -40,14 +40,22 @@ function BandId({ p, genre, name, logo, logoCredits, members, bio }) {
           <p className={bandId.italic}>{logoCredits}</p>
         </>
       }
-      <h3>Genre: {genre}</h3>
-      <h3>Scene: {scene} </h3>
-      <div className={bandId.inline}>
-        <DayPlaying day={day}></DayPlaying>{" "}
-        <h3 className={bandId.inline}>
-          {start} : {end}
-        </h3>
-        <h3>Members: {membersMapped}</h3>
+      <h1 className={bandId.header}>{name}</h1>
+
+      <div className={bandId.bandInfo}>
+        <h2>Genre:</h2> <p className={bandId.fontSize}>&nbsp;{genre}</p>
+      </div>
+      <div className={bandId.bandInfo}>
+        <h2>Scene: </h2>
+        <p className={bandId.fontSize}>&nbsp;{scene}</p>
+      </div>
+      <div className={bandId.bandInfo}>
+        <DayPlaying day={day}></DayPlaying>&nbsp;
+        <p className={bandId.fontSize}>{start}</p>&nbsp; :&nbsp;<p className={bandId.fontSize}>{end}</p>
+      </div>
+      <div className={bandId.bandInfo}>
+        <h2>Members: </h2>
+        <p>{membersMapped}</p>
       </div>
 
       <p className={bandId.fontSize}>{bio}</p>

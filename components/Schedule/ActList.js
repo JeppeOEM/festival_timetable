@@ -36,8 +36,7 @@ function ActList(props) {
       </div>
 
       <section className={actList.actBox}>
-        {<DropdownDayScene setFilter={setFilterDay} />}
-        <TimeBar day={filterDay}></TimeBar>
+        <TimeBar day={filterDay} setFilterDay={setFilterDay}></TimeBar>
 
         {/*       MIDGARD */}
         <div className={actList.scenes}>

@@ -27,6 +27,10 @@
 /* .option option
  color: red */
 
+.filterText
+    transform: translateY(0.5rem)
+    font-size: $smallP
+
 .selection
     display: flex
     flex-direction: row
@@ -35,18 +39,16 @@
 
     padding-right: 1rem
     a
-        color: $color
+        color: $white
         &:hover
             cursor: pointer
             color: $accent
 
 .selectorBtn
     font-size: $mediumP
-
-.select
-    margin: 20px
     &:hover
-        color: yellow
+        cursor: pointer
+        color: $accent
 
 .select
     width: 100vw
@@ -57,9 +59,12 @@
     a
         text-decoration: none
         span
-            color: red
+            color: white
             font-size: $smallP
             padding-right: 1rem
+            &:hover
+                cursor: pointer
+                color: $accent
 
 @media (max-width: $mobile)
     .big

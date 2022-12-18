@@ -104,12 +104,13 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
             onClick={() => changeView(setFilterSettings, setFilterBand, bands)}>
             A-Z
           </span>
+
           <span
             className={`${index.selectorBtn} ${!filterSettings && index.active}`}
             onClick={() => changeView2(setFilterSettings, setFilterBand, bands)}>
-            DAYS
+            DAYS |
           </span>
-
+          <span className={index.filterText}>Genre:&nbsp; </span>
           <Dropdown
             changeView={setFilterSettings}
             filterThis={genresDropdown}
@@ -117,6 +118,7 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
             filterList={filterGenre}
             type='Genres'
           />
+          <span className={index.filterText}>&nbsp; Day:&nbsp; </span>
           <DropdownDay
             changeView={setFilterSettings}
             setFilter={setFilterDay}

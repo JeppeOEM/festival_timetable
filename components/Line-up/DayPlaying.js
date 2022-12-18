@@ -3,13 +3,48 @@ import bandId from "../../styles/pages/bandId.module.sass";
 function DayPlaying({ day }) {
   return (
     <>
-      {day === "mon" && <h3 className={bandId.inline}>Playing Monday </h3>}
-      {day === "tue" && <h3 className={bandId.inline}>Playing Tuesday </h3>}
-      {day === "wed" && <h3 className={bandId.inline}>Playing Wednesday </h3>}
-      {day === "thu" && <h3 className={bandId.inline}>Playing Thursday </h3>}
-      {day === "fri" && <h3 className={bandId.inline}>Playing Friday </h3>}
-      {day === "sat" && <h3 className={bandId.inline}>Playing Saturday </h3>}
-      {day === "sun" && <h3 className={bandId.inline}>Playing Sunday </h3>}
+      {day === "mon" && (
+        <div className={bandId.bandInfo}>
+          <h2 className={bandId.inline}>Playing:&nbsp;</h2>
+          <p>Monday </p>
+        </div>
+      )}
+      {day === "tue" && (
+        <div className={bandId.bandInfo}>
+          <h2 className={bandId.inline}>Playing:&nbsp;</h2>
+          <p> Tuesday</p>
+        </div>
+      )}
+      {day === "wed" && (
+        <div className={bandId.bandInfo}>
+          <h2 className={bandId.inline}>Playing:&nbsp;</h2>
+          <p>Wednesday</p>
+        </div>
+      )}
+      {day === "thu" && (
+        <div className={bandId.bandInfo}>
+          <h2 className={bandId.inline}>Playing:&nbsp;</h2>
+          <p>Thursday</p>
+        </div>
+      )}
+      {day === "fri" && (
+        <div className={bandId.bandInfo}>
+          <h2 className={bandId.bandInfo}>Playing:&nbsp;</h2>
+          <p>Friday</p>
+        </div>
+      )}
+      {day === "sat" && (
+        <div className={bandId.bandInfo}>
+          <h2 className={bandId.inline}>Playing: &nbsp; </h2>
+          <p>Saturday</p>
+        </div>
+      )}
+      {day === "sun" && (
+        <div className={bandId.bandInfo}>
+          <h2 className={bandId.inline}>Playing: &nbsp; </h2>
+          <p>Sunday</p>
+        </div>
+      )}
     </>
   );
 }

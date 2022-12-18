@@ -27,12 +27,12 @@
             color: $white
 
         li
-
+            background: grey
             display: flex
             justify-content: center
             align-items: center
             &:hover
-                background-color: $accent
+                background-color: $white
                 color: $black
                 cursor: pointer
 
@@ -43,7 +43,7 @@
     li
         width: 15rem
         height: 10rem
-        border: 1px solid $accent
+        border: 1px solid $white
         list-style: none
         padding: 1rem
         padding-right: 2rem
@@ -58,16 +58,9 @@
     li
 
         height: 10rem
-        border: 1px solid $accent
+
         list-style: none
         padding: 1rem
-
-        .time
-            width: 10%
-            display: block
-            width: 0rem
-            border: 1px solid $black
-            color: $accent
 
         p
             margin: 0
@@ -75,48 +68,65 @@
             transform: translateY(-1.5rem)
 
 .timeDiv
+    transform: translateY(-6.1rem)
+    font-size: $smallP
+    margin-top: 1rem
     position: sticky
     top: 0
     align-self: start
     left: 0
     background-color: $black
+    .hr
+        transform: translateY(3.3rem)
 
 /* ACTS */
 
 .sceneName
+    font-size: $mediumP
     text-align: center
     padding-left: 2rem
     height: 5rem
     margin: 0
 
 .timeHeader
+    transform: translateY(3rem)
+    font-size: $mediumP
     text-align: center
-    padding-left: 2.5rem
-    height: 4rem
+
+    padding-left: 3.5rem
+
 .date
-    padding-left: 2.5rem
+    font-size: $smallP
+    padding-left: 3.8rem
+    transform: translateY(0.5rem)
 
 .days
+    padding-bottom: 1rem
     height: 3rem
     display: flex
     justify-content: center
     span
         text-align: center
-        color: red
+        color: $white
         font-size: $smallP
         padding-right: 1rem
 
 @media screen and (max-width: 575px)
     .scenes
-        li
-
-            margin-left: 10rem
+        padding-left: 13rem
 
 @media screen and (max-width: 790px)
+    .scenes
+        margin-top: 2rem
+
     .days
         display: none
 
 @media screen and (max-width: 1250px)
+    .actBox
+
+        transform: translateX(0%)
+
     .scenes
 
         li
@@ -124,5 +134,6 @@
             height: 7rem
 
     .timeUl
+
         li
             height: 7rem
