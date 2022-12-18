@@ -1,16 +1,17 @@
 
 @import 'styles/variables.sass'
 .actBox
+
     width: 100%
-    display: grid
-    grid-template-columns: 10rem 1fr
+    display: flex
+    flex-direction: row
+    justify-content: center
+    transform: translateX(-5%)
 
 /*     width: 100%
- display: flex
- flex-direction: row
- justify-content: center
- transform: translateX(-5%) */
-
+ display: grid
+ grid-template-columns: 10rem 1fr
+ */
 .scenes
 
     margin: 0
@@ -73,12 +74,12 @@
             padding: 0
             transform: translateY(-1.5rem)
 
-/* .timeDiv
- position: sticky
- top: 0
- align-self: start
- left: 0
- background-color: $black */
+.timeDiv
+    position: sticky
+    top: 0
+    align-self: start
+    left: 0
+    background-color: $black
 
 /* ACTS */
 
@@ -105,6 +106,14 @@
         font-size: $smallP
         padding-right: 1rem
 
+@media screen and (max-width: 575px)
+    .scenes
+
+        li
+
+    .timeUl
+        li
+
 @media screen and (max-width: 790px)
     .days
         display: none
@@ -119,11 +128,3 @@
     .timeUl
         li
             height: 7rem
-
-@media screen and (max-width: 700px)
-    .scenes
-        padding-left: 13rem
-
-@media screen and (max-width: 700px)
-    .scenes
-        padding-left: 13rem
