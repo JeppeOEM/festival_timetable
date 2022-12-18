@@ -2,10 +2,14 @@
 @import 'styles/variables.sass'
 .actBox
     width: 100%
-    display: flex
-    flex-direction: row
-    justify-content: center
-    transform: translateX(-5%)
+    display: grid
+    grid-template-columns: 10rem 1fr
+
+/*     width: 100%
+ display: flex
+ flex-direction: row
+ justify-content: center
+ transform: translateX(-5%) */
 
 .scenes
 
@@ -14,16 +18,22 @@
     flex-direction: row
 
     section
-        width: 33.3%
+        width: 33%
 
     ul
-        margin-top: 0
+        a
+            text-decoration: none
+            color: $white
 
         li
 
             display: flex
             justify-content: center
             align-items: center
+            &:hover
+                background-color: $accent
+                color: $black
+                cursor: pointer
 
             h2
 
@@ -63,6 +73,13 @@
             padding: 0
             transform: translateY(-1.5rem)
 
+/* .timeDiv
+ position: sticky
+ top: 0
+ align-self: start
+ left: 0
+ background-color: $black */
+
 /* ACTS */
 
 .sceneName
@@ -78,17 +95,35 @@
 .date
     padding-left: 2.5rem
 
+.days
+    height: 3rem
+    display: flex
+    justify-content: center
+    span
+        text-align: center
+        color: red
+        font-size: $smallP
+        padding-right: 1rem
+
+@media screen and (max-width: 790px)
+    .days
+        display: none
+
 @media screen and (max-width: 1250px)
     .scenes
-        li
-            width: 5rem
-            height: 10rem
 
-@media screen and (max-width: 1000px)
-    .scenes
         li
-            width: 10rem
-            height: 10rem
+            width: 7rem
+            height: 7rem
+
     .timeUl
+        li
+            height: 7rem
 
-        position: sticky
+@media screen and (max-width: 700px)
+    .scenes
+        padding-left: 13rem
+
+@media screen and (max-width: 700px)
+    .scenes
+        padding-left: 13rem

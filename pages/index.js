@@ -1,17 +1,12 @@
-import Image from "next/image";
+import news from "../styles/pages/news.module.sass";
 
 function Index() {
   return (
     <>
-      {/*       <Image
-        src='https://www.pexels.com/photo/white-and-brown-concrete-building-on-sea-under-white-clouds-14430249/'
-        alt='lol'
-        fill></Image> */}
-      <img
-        src='https://images.pexels.com/photos/14430249/pexels-photo-14430249.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-        alt='dont work'
-      />
-      <h1>Hello</h1>
+      <div className={news.hero}>
+        {" "}
+        <h1 className={news.festivalTitle}>Ragnarock</h1>
+      </div>
     </>
   );
 }

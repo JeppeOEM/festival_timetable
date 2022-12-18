@@ -12,39 +12,39 @@ function Day({ day }) {
       )}
       {day === "tue" && (
         <>
-          <h3 className={bandId.inline}>Tue </h3>
-          <p>3.Aug</p>
+          <h3 className={`${bandId.inline} ${actList.timeHeader}`}>Tue</h3>
+          <p className={` ${actList.date}`}>3.Aug</p>
         </>
       )}
 
       {day === "wed" && (
         <>
-          <h3 className={bandId.inline}>Wed </h3>
-          <p>4.Aug</p>
+          <h3 className={`${bandId.inline} ${actList.timeHeader}`}>Wed</h3>
+          <p className={` ${actList.date}`}>4.Aug</p>
         </>
       )}
       {day === "thu" && (
         <>
-          <h3 className={bandId.inline}>Thu </h3>
-          <p>5.Aug</p>
+          <h3 className={`${bandId.inline} ${actList.timeHeader}`}>Thu</h3>
+          <p className={` ${actList.date}`}>5.Aug</p>
         </>
       )}
       {day === "fri" && (
         <>
-          <h3 className={bandId.inline}>Fri </h3>
-          <p>6.Aug</p>
+          <h3 className={`${bandId.inline} ${actList.timeHeader}`}>Fri</h3>
+          <p className={` ${actList.date}`}>6.Aug</p>
         </>
       )}
       {day === "sat" && (
         <>
-          <h3 className={bandId.inline}>Sat </h3>
-          <p>7.Aug</p>
+          <h3 className={`${bandId.inline} ${actList.timeHeader}`}>Sat</h3>
+          <p className={` ${actList.date}`}>7.Aug</p>
         </>
       )}
       {day === "sun" && (
         <>
-          <h3 className={bandId.inline}>Sun </h3>
-          <p>8.Aug</p>
+          <h3 className={`${bandId.inline} ${actList.timeHeader}`}>Sun</h3>
+          <p className={` ${actList.date}`}>8.Aug</p>
         </>
       )}
     </>
