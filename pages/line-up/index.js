@@ -111,21 +111,9 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
             DAYS |
           </span>
           <span className={index.filterText}>Genre:&nbsp; </span>
-          <Dropdown
-            changeView={setFilterSettings}
-            filterThis={genresDropdown}
-            setFilter={setFilterGenre}
-            filterList={filterGenre}
-            type='Genres'
-          />
+          <Dropdown filterThis={genresDropdown} setFilter={setFilterGenre} filterList={filterGenre} type='Genres' />
           <span className={index.filterText}>&nbsp; Day:&nbsp; </span>
-          <DropdownDay
-            changeView={setFilterSettings}
-            setFilter={setFilterDay}
-            filterList={filterDay}
-            whatDay={whatDay}
-            type='Days'
-          />
+          <DropdownDay setFilter={setFilterDay} filterList={filterDay} whatDay={whatDay} type='Days' />
         </div>
         <hr className={index.hr}></hr>
         {filterSettings ? <AlphabetSelector></AlphabetSelector> : <DaySelector></DaySelector>}
