@@ -1,9 +1,13 @@
 import news from "../styles/pages/news.module.sass";
 import { useState } from "react";
 import NewsArticle from "../components/index/NewsArticle";
+import ArticleLayout from "../components/index/ArticleLayout";
 import Image from "next/image";
 
 function Index() {
+  const articleOne =
+    "There has been a recent change to the line-up. Queen has resurected Freddie Mercury and he will be performing on the main stage.";
+  const articleTwo = "This year we will provide a free shuttle service to and from the festival.";
   return (
     <>
       <header className={news.hero}>
@@ -16,9 +20,20 @@ function Index() {
       <div classsName={news.body}>
         <h1 className={news.anouncements}>Anouncements</h1>
         <section className={news.section}>
-          <NewsArticle></NewsArticle>
-          <NewsArticle></NewsArticle>
-          <NewsArticle></NewsArticle>
+          <ArticleLayout intro={articleOne} title='Freddie is Back'>
+            <p>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate unde illum ullam. Tempore maiores eum
+              ipsum deleniti, reprehenderit qui optio! Optio mollitia blanditiis repudiandae. Eligendi tempora numquam
+              magni dignissimos nihil!
+            </p>
+          </ArticleLayout>
+          <ArticleLayout intro={articleTwo} title='Shuttle Busses to the people'>
+            <p>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate unde illum ullam. Tempore maiores eum
+              ipsum deleniti, reprehenderit qui optio! Optio mollitia blanditiis repudiandae. Eligendi tempora numquam
+              magni dignissimos nihil!
+            </p>
+          </ArticleLayout>
         </section>
       </div>
     </>

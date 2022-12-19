@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 
 import { Inter } from "@next/font/google";
+import Layout from "../components/Layout";
 
 const inter = Inter({
   weight: ["400", "700"],
@@ -16,7 +17,9 @@ function MyApp({ Component, pageProps }) {
           font-family: ${inter.style.fontFamily};
         }
       `}</style>
-      <Component {...pageProps} />;
+      <Layout>
+        <Component {...pageProps} />;
+      </Layout>
     </>
   );
 }

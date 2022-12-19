@@ -1,9 +1,9 @@
 import Image from "next/image";
-import nav from "/styles/components/Nav.module.css";
+import nav from "/styles/components/Nav.module.sass";
 import Link from "next/link";
 import { useState } from "react";
 
-export default function Nav(props) {
+function Nav(props) {
   const [menu, setMenu] = useState(false);
 
   function toogleMenu(setMenu) {
@@ -21,7 +21,7 @@ export default function Nav(props) {
           <li className={nav.burgerItem}>k</li>
           <li className={nav.burgerItem}>
             {" "}
-            <Link href='/line-up'>Announcements</Link>
+            <Link href='/'>Announcements</Link>
           </li>
           <li className={nav.burgerItem}>
             {" "}
@@ -32,7 +32,7 @@ export default function Nav(props) {
             <Link href='/schedule'>Timetable</Link>
           </li>
           <li className={nav.burgerItem}>
-            <Link href='/schedule'>Info</Link>
+            <Link href='/info'>Info</Link>
           </li>
         </ul>
       ) : null}
@@ -48,7 +48,7 @@ export default function Nav(props) {
           <div className={nav.menu}>
             <ul>
               <li>
-                <Link href='/line-up'>Announcements</Link>
+                <Link href='/'>Announcements</Link>
               </li>
               <li>
                 <Link href='/line-up'>Line-Up</Link>
@@ -57,7 +57,7 @@ export default function Nav(props) {
                 <Link href='/schedule'>Timetable</Link>
               </li>
               <li>
-                <Link href='/schedule'>Info</Link>
+                <Link href='/info'>Info</Link>
               </li>
             </ul>
           </div>
@@ -66,3 +66,4 @@ export default function Nav(props) {
     </>
   );
 }
+export default Nav;
