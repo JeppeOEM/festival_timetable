@@ -5,7 +5,7 @@ import playingWhen from "../../js_functions/playingWhen";
 import DayPlaying from "../../components/Line-up/DayPlaying";
 
 import bandId from "../../styles/pages/bandId.module.sass";
-
+import Nav from "../../components/Nav";
 import { useState } from "react";
 
 //WEIRD NAMING ALERT
@@ -30,36 +30,37 @@ function BandId({ p, genre, name, logo, logoCredits, members, bio }) {
   });
 
   return (
-    <section className={bandId.section}>
-      {
-        <>
-          <figure className={bandId.logo}>
-            {/*            <Image src='http://localhost:3000/random-img' alt='some' fill></Image> */}
-            <Image src={logo} alt={name} fill />
-          </figure>
-          <p className={bandId.italic}>{logoCredits}</p>
-        </>
-      }
-      <h1 className={bandId.header}>{name}</h1>
+    <>
+      <section className={bandId.section}>
+        {
+          <>
+            <figure className={bandId.logo}>
+              <Image src={logo} alt={name} fill />
+            </figure>
+            <p className={bandId.italic}>{logoCredits}</p>
+          </>
+        }
+        <h1 className={bandId.header}>{name}</h1>
 
-      <div className={bandId.bandInfo}>
-        <h2>Genre:</h2> <p className={bandId.fontSize}>&nbsp;{genre}</p>
-      </div>
-      <div className={bandId.bandInfo}>
-        <h2>Scene: </h2>
-        <p className={bandId.fontSize}>&nbsp;{scene}</p>
-      </div>
-      <div className={bandId.bandInfo}>
-        <DayPlaying day={day}></DayPlaying>&nbsp;
-        <p className={bandId.fontSize}>{start}</p>&nbsp; :&nbsp;<p className={bandId.fontSize}>{end}</p>
-      </div>
-      <div className={bandId.bandInfo}>
-        <h2>Members: </h2>
-        <p>{membersMapped}</p>
-      </div>
+        <div className={bandId.bandInfo}>
+          <h2>Genre:</h2> <p className={bandId.fontSize}>&nbsp;{genre}</p>
+        </div>
+        <div className={bandId.bandInfo}>
+          <h2>Scene: </h2>
+          <p className={bandId.fontSize}>&nbsp;{scene}</p>
+        </div>
+        <div className={bandId.bandInfo}>
+          <DayPlaying day={day}></DayPlaying>&nbsp;
+          <p className={bandId.fontSize}>{start}</p>&nbsp; :&nbsp;<p className={bandId.fontSize}>{end}</p>
+        </div>
+        <div className={bandId.bandInfo}>
+          <h2>Members: </h2>
+          <p>{membersMapped}</p>
+        </div>
 
-      <p className={bandId.fontSize}>{bio}</p>
-    </section>
+        <p className={bandId.fontSize}>{bio}</p>
+      </section>
+    </>
   );
 }
 

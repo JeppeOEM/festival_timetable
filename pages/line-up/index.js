@@ -27,7 +27,7 @@ function LineUp({ bands, genres, playingWhenData, bandsReset, imgData }) {
   const [actData, setActData] = useState(playingWhenData);
   const [sortDir, setSortDir] = useState("1");
   const [filterSettings, setFilterSettings] = useState("alphabet");
-  const [resetData, setResetData] = useState(bandsReset);
+
   const [shownDays, setShownDays] = useState([]);
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   const whatDay = ["all", "mon", "tue", "wed", "thu", "fri", "sat", "sun"];
@@ -103,7 +103,7 @@ function LineUp({ bands, genres, playingWhenData, bandsReset, imgData }) {
         {/*       <button onClick={() => changeSortDir(sortDir, setSortDir)}>Change Direction</button> */}
         <div className={index.selection}>
           <span
-            className={`${index.selectorBtn} ${filterSettings === "alphabet" && index.active}`} //if filterSettings is true, add the active class
+            className={`${index.selectorBtn} ${filterSettings === "alphabet" && index.active}`} //if filterSettings is true, add the active css class
             onClick={() => changeView(setFilterSettings, setFilterBand, bands)}>
             A-Z
           </span>
@@ -125,15 +125,19 @@ function LineUp({ bands, genres, playingWhenData, bandsReset, imgData }) {
         {filterSettings === "days" && <DaySelector></DaySelector>}
         {filterSettings === "genres" && (
           <div className={index.drownDownBox}>
-            <span className={index.filterText}>Genre:&nbsp; </span>
-            <Dropdown filterThis={genresDropdown} setFilter={setFilterGenre} filterList={filterGenre} type='Genres' />
-            <span className={index.filterText}>&nbsp; Day:&nbsp; </span>
-            <DropdownDay setFilter={setFilterDay} filterList={filterDay} whatDay={whatDay} type='Days' />
+            <div className={index.dropDownItem}>
+              <span className={index.filterText}>Genre:&nbsp; </span>
+              <Dropdown filterThis={genresDropdown} setFilter={setFilterGenre} filterList={filterGenre} type='Genres' />
+            </div>
 
-            <FilterBox setFilter={setFilterGenre} filterList={filterGenre} />
+            <div className={index.dropDownItem}>
+              <span className={index.filterText}>&nbsp; Day:&nbsp; </span>
+              <DropdownDay setFilter={setFilterDay} filterList={filterDay} whatDay={whatDay} type='Days' />
+            </div>
           </div>
         )}
         <hr className={index.hr}></hr>
+        <FilterBox setFilter={setFilterGenre} filterList={filterGenre} />
         {filterSettings === "alphabet" && (
           <BandList
             imgData={imgData}
@@ -178,12 +182,7 @@ export async function getStaticProps() {
   const randomImageList = await fetch("http://localhost:3000/api");
   const imgData = await randomImageList.json();
 
-  const genreData = await data.map((genre) => {
-    return genre.genre;
-  });
-
-  console.log("testSSSSS", imgData.image.length);
-  const genres = [...new Set(genreData)]; // remove duplicates from the array
+  // remove duplicates from the array
 
   const playingWhenData = playingWhen(dataSchedule); // extracting information from the diffrent acts
   const combined = combineData(data, playingWhenData, imgData); // act data is added to the band data
@@ -191,6 +190,27 @@ export async function getStaticProps() {
   function combineData(data, playingWhenData) {
     const len = imgData.image.length;
     let randomNumber = Math.floor(Math.random() * len);
+    const RandomGenre = [
+      "Rock",
+      "Adventure Metal",
+      "Alternative Metal",
+      "Post Metal",
+      "Punk",
+      "Hardcore Punk",
+      "Speed Metal",
+      "Heavy Metal",
+      "Heavy Metal",
+      "Black Metal",
+      "Doom Metal",
+      "Power Metal",
+      "Power Metal",
+      "Folk Metal",
+      "Industrial Metal",
+      "Funeral Doom",
+      "Nu Metal",
+    ];
+    let listLength = RandomGenre.length;
+    console.log(RandomGenre[1]);
 
     let combinedList = data.map((band) => {
       for (let i = 0; i < playingWhenData.length; i++) {
@@ -203,8 +223,11 @@ export async function getStaticProps() {
 
           const isHttp = band.logo.substring(0, 4);
           let logo = null; //Check if the logo is a link or a local image
+
           if (isHttp === "http") {
+            band.genre = RandomGenre[Math.floor(Math.random() * listLength)];
             /*     logo = "/" + getRandomImage(); */
+            let genre = RandomGenre[1];
             randomNumber = Math.floor(Math.random() * len);
             logo = "img/" + imgData.image[randomNumber];
           } else {
@@ -219,7 +242,11 @@ export async function getStaticProps() {
     });
     return combinedList;
   }
+  const genreData = await data.map((genre) => {
+    return genre.genre;
+  });
 
+  const genres = [...new Set(genreData)];
   return {
     props: {
       bands: combined,

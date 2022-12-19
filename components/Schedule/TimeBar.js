@@ -6,8 +6,9 @@ function TimeBar({ day, setFilterDay }) {
   return (
     <>
       <div className={actList.timeDiv}>
-        <DropdownDayScene setFilter={setFilterDay} />
-        <Day day={day} />
+        <div className={actList.hide}>
+          <Day day={day} />
+        </div>
         <ul className={actList.timeUl}>
           <li className={actList.time}>
             <p>00:00</p>

@@ -1,5 +1,14 @@
 
 @import 'styles/variables.sass'
+.dropdownSchedule
+    z-index: 2
+    position: sticky
+    top: 20px
+    left: 8%
+
+    height: 2rem
+    optgroup
+        font-size: 1rem
 .actBox
 
     width: 100%
@@ -68,6 +77,7 @@
             transform: translateY(-1.5rem)
 
 .timeDiv
+
     transform: translateY(-6.1rem)
     font-size: $smallP
     margin-top: 1rem
@@ -77,7 +87,7 @@
     left: 0
     background-color: $black
     .hr
-        transform: translateY(3.3rem)
+        transform: translateY(2rem)
 
 /* ACTS */
 
@@ -110,15 +120,30 @@
         color: $white
         font-size: $smallP
         padding-right: 1rem
+        &:hover
+            cursor: pointer
+            color: $accent
 
 @media screen and (max-width: 575px)
+    .timeDiv
+        position: fixed
+        transform: translateY(5.7rem)
+        .hr
+            transform: translateY(1.3rem)
+
     .scenes
-        padding-left: 13rem
+        padding-left: 24rem
 
 @media screen and (max-width: 790px)
     .scenes
-        margin-top: 2rem
 
+        margin-top: 2rem
+        padding-left: 20rem
+    .dropdownSchedule
+        display: block
+
+    .hide
+        display: none
     .days
         display: none
 
@@ -134,6 +159,6 @@
             height: 7rem
 
     .timeUl
-
+        margin-top: 1rem
         li
             height: 7rem

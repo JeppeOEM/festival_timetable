@@ -7,7 +7,7 @@ function DropdownDay(props) {
 
   return (
     <>
-      <select /* className={s.dropdownSchedule} */ onChange={optionChangeHandler}>
+      <select onChange={optionChangeHandler}>
         {props.whatDay.map((option, index) => {
           return (
             <optgroup className={index.option} key={index}>

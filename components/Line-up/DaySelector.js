@@ -2,7 +2,7 @@ import index from "../../styles/components/line-up/index.module.sass";
 
 function DaySelector() {
   return (
-    <div className={index.select}>
+    <div className={`${index.select} `}>
       <a href='#Monday'>
         <span>Monday</span>
       </a>

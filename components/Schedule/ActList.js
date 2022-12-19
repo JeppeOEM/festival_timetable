@@ -35,6 +35,10 @@ function ActList(props) {
         <span onClick={() => changeDay("sun")}>Sunday</span>
       </div>
 
+      <div className={actList.blackBackground}>
+        <DropdownDayScene setFilter={setFilterDay} />
+      </div>
+
       <section className={actList.actBox}>
         <TimeBar day={filterDay} setFilterDay={setFilterDay}></TimeBar>
 

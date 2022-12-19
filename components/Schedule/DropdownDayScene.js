@@ -1,4 +1,4 @@
-import style from "../../styles/components/schedule/DropdownSchedule.module.sass";
+import actList from "../../styles/components/schedule/ActList.module.sass";
 function DropdownDayScene({ setFilter }) {
   const whatDay = ["Choose Day", "Monday", "Thuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
@@ -10,7 +10,7 @@ function DropdownDayScene({ setFilter }) {
 
   return (
     <>
-      <select className={style.dropdownSchedule} onChange={optionChangeHandler}>
+      <select className={actList.dropdownSchedule} onChange={optionChangeHandler}>
         <optgroup>
           {whatDay.map((option, index) => {
             return <option key={index}>{option}</option>;
