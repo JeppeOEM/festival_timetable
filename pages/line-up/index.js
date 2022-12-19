@@ -26,7 +26,7 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
   const [genresDropdown, setGenresdropdown] = useState(genres);
   const [actData, setActData] = useState(playingWhenData);
   const [sortDir, setSortDir] = useState("1");
-  const [filterSettings, setFilterSettings] = useState(true);
+  const [filterSettings, setFilterSettings] = useState("alphabet");
   const [resetData, setResetData] = useState(bandsReset);
   const [shownDays, setShownDays] = useState([]);
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -75,14 +75,23 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
   }, [filterSettings, filterGenre, filterDay, sortDir]);
 
   function changeView(setFilterSettings, setFilterBand, bands, bool) {
-    setFilterSettings(true);
+    setFilterSettings("alphabet");
     console.log("AZ", filterSettings);
     console.log(bands);
     setFilterBand(bands);
   }
 
   function changeView2(setFilterSettings, setFilterBand, bands, bool) {
-    setFilterSettings(false);
+    setFilterSettings("days");
+
+    console.log(bands);
+    setFilterDay("all");
+
+    console.log("DAYS", filterSettings);
+  }
+
+  function changeView3(setFilterSettings, setFilterBand, bands, bool) {
+    setFilterSettings("genres");
 
     console.log(bands);
     setFilterDay("all");
@@ -104,27 +113,36 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
             onClick={() => changeView(setFilterSettings, setFilterBand, bands)}>
             A-Z
           </span>
-
+          <span className={index.selectorBtn}>|</span>
           <span
             className={`${index.selectorBtn} ${!filterSettings && index.active}`}
             onClick={() => changeView2(setFilterSettings, setFilterBand, bands)}>
-            DAYS |
+            DAYS
           </span>
-          <span className={index.filterText}>Genre:&nbsp; </span>
-          <Dropdown filterThis={genresDropdown} setFilter={setFilterGenre} filterList={filterGenre} type='Genres' />
-          <span className={index.filterText}>&nbsp; Day:&nbsp; </span>
-          <DropdownDay setFilter={setFilterDay} filterList={filterDay} whatDay={whatDay} type='Days' />
+          <span className={index.selectorBtn}>|</span>
+          <span
+            className={`${index.selectorBtn} ${!filterSettings && index.active}`}
+            onClick={() => changeView3(setFilterSettings, setFilterBand, bands)}>
+            GENRES
+          </span>
         </div>
         <hr className={index.hr}></hr>
-        {filterSettings ? <AlphabetSelector></AlphabetSelector> : <DaySelector></DaySelector>}
+        {filterSettings === "alphabet" && <AlphabetSelector></AlphabetSelector>}
+        {filterSettings === "days" && <DaySelector></DaySelector>}
+        {filterSettings === "days" && <DaySelector></DaySelector>}
+        <span className={index.filterText}>Genre:&nbsp; </span>
+        <Dropdown filterThis={genresDropdown} setFilter={setFilterGenre} filterList={filterGenre} type='Genres' />
+        <span className={index.filterText}>&nbsp; Day:&nbsp; </span>
+        <DropdownDay setFilter={setFilterDay} filterList={filterDay} whatDay={whatDay} type='Days' />
         <hr className={index.hr}></hr>
+
         <FilterBox setFilter={setFilterGenre} filterList={filterGenre} />
 
-        {filterSettings && (
+        {filterSettings === "alphabet" && (
           <BandList bands={filterBand} filterResult={filterBand} actData={actData} filterGenre={filterGenre} />
         )}
 
-        {!filterSettings && (
+        {filterSettings === "days" && (
           <BandListGenres
             shownDays={shownDays}
             allBands={bands}
