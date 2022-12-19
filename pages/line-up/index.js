@@ -18,7 +18,7 @@ import index from "../../styles/components/line-up/index.module.sass";
 
 import { useEffect, useState } from "react";
 
-function LineUp({ bands, genres, playingWhenData, bandsReset }) {
+function LineUp({ bands, genres, playingWhenData, bandsReset, imgData }) {
   const [filterGenre, setFilterGenre] = useState([]);
   const [filterDay, setFilterDay] = useState([]);
   const [filterBand, setFilterBand] = useState([]);
@@ -32,6 +32,7 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   const whatDay = ["all", "mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
+  console.log(imgData);
   function daysShowed(result) {
     const getDays = result.map((band) => {
       return band.day;
@@ -181,12 +182,16 @@ export async function getStaticProps() {
     return genre.genre;
   });
 
+  console.log("testSSSSS", imgData.image.length);
   const genres = [...new Set(genreData)]; // remove duplicates from the array
 
   const playingWhenData = playingWhen(dataSchedule); // extracting information from the diffrent acts
-  const combined = combineData(data, playingWhenData); // act data is added to the band data
+  const combined = combineData(data, playingWhenData, imgData); // act data is added to the band data
 
   function combineData(data, playingWhenData) {
+    const len = imgData.image.length;
+    let randomNumber = Math.floor(Math.random() * len);
+
     let combinedList = data.map((band) => {
       for (let i = 0; i < playingWhenData.length; i++) {
         if (band.name == playingWhenData[i].id) {
@@ -194,6 +199,19 @@ export async function getStaticProps() {
           band.scene = playingWhenData[i].scene;
           band.start = playingWhenData[i].start;
           band.end = playingWhenData[i].end;
+          /*           band.logo = "img/"+ */
+
+          const isHttp = band.logo.substring(0, 4);
+          let logo = null; //Check if the logo is a link or a local image
+          if (isHttp === "http") {
+            /*     logo = "/" + getRandomImage(); */
+            randomNumber = Math.floor(Math.random() * len);
+            logo = "img/" + imgData.image[randomNumber];
+          } else {
+            logo = band.logo;
+          }
+
+          band.logo = logo;
         }
       }
 
