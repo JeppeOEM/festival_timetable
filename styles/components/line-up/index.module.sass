@@ -6,7 +6,7 @@
     margin-bottom: 5%
 
 .selectorBtn.active
-    color: red
+    color: $white
     text-decoration: underline
 
 .big
@@ -16,11 +16,10 @@
 .selection
 
     padding-top: 0rem
-    background-color: $background
-
     margin-left: 5%
 
 .hr
+
     margin-left: 5%
     margin-right: 5%
 
@@ -28,8 +27,9 @@
  color: red */
 
 .filterText
-    transform: translateY(0.5rem)
-    font-size: $smallP
+    padding-bottom: 0.5rem
+    margin-left: 5%
+    font-size: $text
 
 .selection
     display: flex
@@ -45,10 +45,13 @@
             color: $accent
 
 .selectorBtn
-    font-size: $mediumP
+    font-size: $smallP
     &:hover
         cursor: pointer
         color: $accent
+
+.dropDownBox
+    margin-left: 5%
 
 .select
 
@@ -61,7 +64,7 @@
         text-decoration: none
         span
             color: white
-            font-size: $smallP
+            font-size: $text
             padding-right: 1rem
             &:hover
                 cursor: pointer

@@ -8,6 +8,8 @@ function Band(props) {
   let logo = null;
   const isHttp = props.logo.substring(0, 4); //Check if the logo is a link or a local image
   if (isHttp === "http") {
+    console.log(logo);
+    /*     logo = "/" + getRandomImage(); */
     logo = props.logo; //images inside Public folder is accesed by / and the name of the image
   } else {
     logo = "/" + props.logo;
@@ -26,7 +28,7 @@ function Band(props) {
         as={`line-up/${kebabCase(props.name)}`}>
         <div className={BandGrid.nameBox}>
           <h2>{props.name}</h2>
-          <h3>{props.genre}</h3>
+          <p className={BandGrid.genreTitle}>{props.genre}</p>
         </div>
       </Link>
     </article>

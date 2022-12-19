@@ -76,27 +76,20 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
 
   function changeView(setFilterSettings, setFilterBand, bands, bool) {
     setFilterSettings("alphabet");
-    console.log("AZ", filterSettings);
-    console.log(bands);
+    setFilterGenre([]);
     setFilterBand(bands);
   }
 
   function changeView2(setFilterSettings, setFilterBand, bands, bool) {
     setFilterSettings("days");
+    setFilterGenre([]);
 
-    console.log(bands);
     setFilterDay("all");
-
-    console.log("DAYS", filterSettings);
   }
 
   function changeView3(setFilterSettings, setFilterBand, bands, bool) {
     setFilterSettings("genres");
-
-    console.log(bands);
     setFilterDay("all");
-
-    console.log("DAYS", filterSettings);
   }
 
   return (
@@ -109,19 +102,19 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
         {/*       <button onClick={() => changeSortDir(sortDir, setSortDir)}>Change Direction</button> */}
         <div className={index.selection}>
           <span
-            className={`${index.selectorBtn} ${filterSettings && index.active}`} //if filterSettings is true, add the active class
+            className={`${index.selectorBtn} ${filterSettings === "alphabet" && index.active}`} //if filterSettings is true, add the active class
             onClick={() => changeView(setFilterSettings, setFilterBand, bands)}>
             A-Z
           </span>
           <span className={index.selectorBtn}>|</span>
           <span
-            className={`${index.selectorBtn} ${!filterSettings && index.active}`}
+            className={`${index.selectorBtn} ${filterSettings === "days" && index.active}`}
             onClick={() => changeView2(setFilterSettings, setFilterBand, bands)}>
             DAYS
           </span>
           <span className={index.selectorBtn}>|</span>
           <span
-            className={`${index.selectorBtn} ${!filterSettings && index.active}`}
+            className={`${index.selectorBtn} ${filterSettings === "genres" && index.active}`}
             onClick={() => changeView3(setFilterSettings, setFilterBand, bands)}>
             GENRES
           </span>
@@ -129,21 +122,41 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
         <hr className={index.hr}></hr>
         {filterSettings === "alphabet" && <AlphabetSelector></AlphabetSelector>}
         {filterSettings === "days" && <DaySelector></DaySelector>}
-        {filterSettings === "days" && <DaySelector></DaySelector>}
-        <span className={index.filterText}>Genre:&nbsp; </span>
-        <Dropdown filterThis={genresDropdown} setFilter={setFilterGenre} filterList={filterGenre} type='Genres' />
-        <span className={index.filterText}>&nbsp; Day:&nbsp; </span>
-        <DropdownDay setFilter={setFilterDay} filterList={filterDay} whatDay={whatDay} type='Days' />
+        {filterSettings === "genres" && (
+          <div className={index.drownDownBox}>
+            <span className={index.filterText}>Genre:&nbsp; </span>
+            <Dropdown filterThis={genresDropdown} setFilter={setFilterGenre} filterList={filterGenre} type='Genres' />
+            <span className={index.filterText}>&nbsp; Day:&nbsp; </span>
+            <DropdownDay setFilter={setFilterDay} filterList={filterDay} whatDay={whatDay} type='Days' />
+
+            <FilterBox setFilter={setFilterGenre} filterList={filterGenre} />
+          </div>
+        )}
         <hr className={index.hr}></hr>
-
-        <FilterBox setFilter={setFilterGenre} filterList={filterGenre} />
-
         {filterSettings === "alphabet" && (
-          <BandList bands={filterBand} filterResult={filterBand} actData={actData} filterGenre={filterGenre} />
+          <BandList
+            imgData={imgData}
+            bands={filterBand}
+            filterResult={filterBand}
+            actData={actData}
+            filterGenre={filterGenre}
+          />
         )}
 
         {filterSettings === "days" && (
           <BandListGenres
+            imgData={imgData}
+            shownDays={shownDays}
+            allBands={bands}
+            bands={filterBand}
+            filterResult={filterBand}
+            filterDay={filterDay}
+          />
+        )}
+
+        {filterSettings === "genres" && (
+          <BandListGenres
+            imgData={imgData}
             shownDays={shownDays}
             allBands={bands}
             bands={filterBand}
@@ -161,6 +174,9 @@ export async function getStaticProps() {
   const responseSchedule = await fetch("http://localhost:8080/schedule");
   const data = await response.json();
   const dataSchedule = await responseSchedule.json();
+  const randomImageList = await fetch("http://localhost:3000/api");
+  const imgData = await randomImageList.json();
+
   const genreData = await data.map((genre) => {
     return genre.genre;
   });
@@ -191,6 +207,7 @@ export async function getStaticProps() {
       bands: combined,
       genres,
       playingWhenData,
+      imgData,
     },
   };
 }

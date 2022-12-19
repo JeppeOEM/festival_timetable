@@ -3,7 +3,6 @@ import index from "../../styles/components/line-up/index.module.sass";
 function DropdownDay(props) {
   const optionChangeHandler = (event) => {
     props.setFilter(event.target.value);
-    props.changeView(false);
   };
 
   return (
