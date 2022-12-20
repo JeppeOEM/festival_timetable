@@ -1,5 +1,5 @@
 import InfoArticle from "../../components/Info/InfoArticle";
-import info from "../../styles/pages/Info.module.sass";
+import info from "../../styles/pages/info.module.sass";
 
 function Info() {
   return (
