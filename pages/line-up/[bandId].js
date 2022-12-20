@@ -15,7 +15,6 @@ function BandId({ p, genre, name, logo, logoCredits, members, bio }) {
   function bandScheduleInfo(p) {
     for (let i = 0; i < p.length; i++) {
       if (p[i].id === `${name}`) {
-        console.log(p[i].id);
         return p[i];
       }
     }
@@ -23,8 +22,6 @@ function BandId({ p, genre, name, logo, logoCredits, members, bio }) {
 
   const getInfo = bandScheduleInfo(p);
   const { day, scene, start, end } = getInfo;
-  console.log(getInfo);
-
   const membersMapped = members.map((member) => {
     // FIX LAST COMMA
     return member + ", ";

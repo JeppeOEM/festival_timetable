@@ -12,7 +12,6 @@ function filterPerDay(currentList, actData, filterDay, returnActOrBand) {
 
   getBands = currentList.filter((band) => {
     for (let i = 0; i < dayList.length; i++) {
-      console.log(returnActOrBand);
       if (band.name === dayList[i].id && returnActOrBand === "band") {
         //return band without info on days
         return band;
@@ -21,8 +20,6 @@ function filterPerDay(currentList, actData, filterDay, returnActOrBand) {
       }
     }
   });
-
-  console.log(getBands);
 
   return getBands;
 }

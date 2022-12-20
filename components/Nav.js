@@ -8,7 +8,6 @@ function Nav(props) {
 
   function toogleMenu(setMenu) {
     if (!menu) {
-      console.log("menu is false");
       setMenu(true);
     } else {
       setMenu(false);

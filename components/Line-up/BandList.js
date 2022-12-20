@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 // prettier-ignore
 function BandList({bands, filterGenre, imgData}) {
 
-  console.log("bandlist imgdata", imgData)
+
 const [hideLetters, setHideLetters] = useState(true);  
 
 
@@ -13,13 +13,11 @@ useEffect(() => {
 
 if(filterGenre == 0){
 setHideLetters(true)
-console.log("filterGenre == 0", hideLetters);
-console.log("FILTER GENRE", filterGenre);
+
 }
 else{
   setHideLetters(false)
-  console.log("!!!!filterGenre == 0", hideLetters);
-  console.log("FILTER GENRE", filterGenre);
+
 }
 
 
@@ -63,8 +61,6 @@ function BandAlphabet({ imgData, bands, letter }) {
 ///////// Sorted in blocks according to Letter //////////
 
 function CompleteListWithLetters({ bands, imgData }) {
-  console.log("complete list letters", imgData);
-  console.log("test");
   const getLetters = bands.map((band) => {
     return band.name[0];
   });
@@ -108,7 +104,6 @@ function CompleteListWithLetters({ bands, imgData }) {
 }
 
 function AlphabetLetter({ imgData, bands, letter }) {
-  console.log("letter", imgData);
   return (
     <>
       <h2 id={`${letter.toLowerCase()}`} className={BandGrid.info}>
@@ -124,8 +119,6 @@ function AlphabetLetter({ imgData, bands, letter }) {
 ////// Is listed in one section without big letters /////
 
 function CompleteList({ bands, filterGenre, imgData }) {
-  console.log("complete list", imgData);
-  console.log("test");
   const getLetters = bands.map((band) => {
     return band.name[0];
   });

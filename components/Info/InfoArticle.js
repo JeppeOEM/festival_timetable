@@ -5,7 +5,6 @@ import Image from "next/image";
 function InfoArticle({ title, children }) {
   const [expand, setExpand] = useState(false);
   function expandArticle(setExpand) {
-    console.log(expand);
     if (expand == false) {
       setExpand(true);
     } else {

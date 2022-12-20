@@ -6,7 +6,7 @@ import BandGrid from "../../styles/components/line-up/BandGrid.module.sass";
 
 function Band(props) {
   let logo = null;
-  console.log("WHAT THEACTUAL FUCK");
+
   const isHttp = props.logo.substring(0, 4); //Check if the logo is a link or a local image
   if (isHttp === "http") {
     /*     logo = "/" + getRandomImage(); */

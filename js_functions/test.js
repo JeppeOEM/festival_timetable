@@ -217,5 +217,3 @@ function filterAllGenres(bands, filterGenre) {
 
   return result;
 }
-
-console.log(filterAllGenres(bands, filterGenre));

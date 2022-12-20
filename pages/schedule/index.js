@@ -6,8 +6,6 @@ import { useState, useEffect } from "react";
 function Schedule(props) {
   const [acts, setActs] = useState([props]);
 
-  console.log(props);
-
   return (
     <section>
       {/* 
@@ -25,7 +23,6 @@ export async function getStaticProps() {
   const response = await fetch(api + "schedule");
   const data = await response.json();
 
-  console.log(data);
   return {
     props: {
       act: data,

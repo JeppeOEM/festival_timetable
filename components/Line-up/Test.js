@@ -37,8 +37,7 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
       return band.day;
     });
     const getDaysList = [...new Set(getDays)]; //removes duplicates
-    /*     console.log("getDaysList", getDaysList); */
-    console.log("dssdsadasdasasdasdasdd", getDaysList);
+
     setShownDays(getDaysList);
     return getDaysList;
   }
@@ -47,7 +46,6 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
     const result = bands.filter((band) => {
       if (filterGenre.length !== 0) {
         return filterGenre.some((filt) => {
-          //some = does the callback for any element in the array?
           return band.genre.includes(filt);
         });
       } else {
@@ -59,7 +57,6 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
   }
 
   useEffect(() => {
-    console.log(filterGenre);
     setFilterBand(bands);
 
     let filterResult = filterPerDay(bands, actData, filterDay, "band");
@@ -79,24 +76,18 @@ function LineUp({ bands, genres, playingWhenData, bandsReset }) {
     setFilterSettings("alphabet");
 
     setFilterBand(bands);
-
-    console.log("Alpha", filterSettings);
   }
 
   function changeView2(setFilterSettings, setFilterBand, bands, bool) {
     setFilterSettings("days");
 
     setFilterDay("all");
-
-    console.log("DAYS", filterSettings);
   }
 
   function changeView3(setFilterSettings, setFilterBand, bands, bool) {
     setFilterSettings("genres");
 
     setFilterDay("all");
-
-    console.log("gGENRE", filterSettings);
   }
 
   return (

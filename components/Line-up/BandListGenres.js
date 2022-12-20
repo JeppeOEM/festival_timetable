@@ -7,7 +7,6 @@ function BandList({ imgData, shownDays, bands, filterDay, filterResult, filterGe
   shownDays.includes();
 
   function isDayinList(day, filterDay) {
-    console.log(filterDay === day);
     if (filterDay == "all") {
       return true;
     } else {

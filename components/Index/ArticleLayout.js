@@ -5,7 +5,6 @@ import news from "../../styles/pages/News.module.sass";
 function ArticleLayout({ intro, title, children }) {
   const [expand, setExpand] = useState(false);
   function expandArticle(setExpand) {
-    console.log(expand);
     if (expand == false) {
       setExpand(true);
     } else {

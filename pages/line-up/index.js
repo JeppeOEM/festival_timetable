@@ -32,13 +32,11 @@ function LineUp({ bands, genres, playingWhenData, bandsReset, imgData }) {
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   const whatDay = ["all", "mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
-  console.log(imgData);
   function daysShowed(result) {
     const getDays = result.map((band) => {
       return band.day;
     });
     const getDaysList = [...new Set(getDays)]; //removes duplicates
-    console.log("getDaysList", getDaysList);
     setShownDays(getDaysList);
     return getDaysList;
   }
@@ -59,7 +57,6 @@ function LineUp({ bands, genres, playingWhenData, bandsReset, imgData }) {
   }
 
   useEffect(() => {
-    console.log(filterGenre);
     setFilterBand(bands);
 
     let filterResult = filterPerDay(bands, actData, filterDay, "band");
@@ -196,7 +193,6 @@ export async function getStaticProps() {
     ],
   };
 
-  console.log(imgData.length);
   // remove duplicates from the array
 
   const playingWhenData = playingWhen(dataSchedule); // extracting information from the diffrent acts
@@ -226,7 +222,6 @@ export async function getStaticProps() {
       "Thrash Metal",
     ];
     let listLength = RandomGenre.length;
-    console.log(RandomGenre[1]);
 
     let combinedList = data.map((band) => {
       for (let i = 0; i < playingWhenData.length; i++) {
