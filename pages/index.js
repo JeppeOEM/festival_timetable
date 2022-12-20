@@ -1,8 +1,8 @@
 import news from "../styles/pages/news.module.sass";
 import { useState } from "react";
-import NewsArticle from "../components/index/NewsArticle";
-import ArticleLayout from "../components/index/ArticleLayout";
+
 import Image from "next/image";
+import ArticleLayout from "../components/Info/InfoLayout";
 
 function Index() {
   const articleOne =

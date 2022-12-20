@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import news from "../../styles/pages/Info.module.sass";
+import news from "../../styles/pages/news.module.sass";
 
 function ArticleLayout({ intro, title, children }) {
   const [expand, setExpand] = useState(false);
