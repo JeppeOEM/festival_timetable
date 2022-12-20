@@ -1,10 +1,66 @@
-import React from "react";
+import InfoArticle from "../../components/Info/InfoArticle";
+import info from "../../styles/pages/Info.module.sass";
 
-function index() {
-  return <div>index</div>;
+function Info() {
+  return (
+    <>
+      <section className={info.section}>
+        <hr />
+        <InfoArticle title='About the festival'>
+          <p>
+            This text is written by chatGBT: A heavy metal festival is a music festival that focuses on heavy metal
+            music. These festivals typically feature a lineup of various heavy metal bands, as well as food and
+            merchandise vendors. Some festivals also offer camping facilities for attendees. Heavy metal festivals can
+            range in size, from smaller, local events with a few hundred attendees, to larger, international festivals
+            with tens of thousands of attendees. Many heavy metal festivals take place outdoors, although some may be
+            held in indoor venues. At a heavy metal festival, attendees can expect to hear a variety of heavy metal
+            subgenres, including thrash metal, death metal, and black metal. The atmosphere at these festivals is
+            typically energetic and lively, with fans headbanging and moshing along to the music. In addition to the
+            music, many heavy metal festivals also feature other forms of entertainment, such as fireworks displays,
+            pyrotechnics, and other special effects. These festivals can be a great way for heavy metal fans to discover
+            new bands and connect with others who share their love of the genre.
+          </p>
+        </InfoArticle>
+        <hr />
+
+        <InfoArticle title='Rules'>
+          <p>
+            This text is written by chatGBT AI: A heavy metal festival is a music festival that focuses on heavy metal
+            music. These festivals typically feature a lineup of various heavy metal bands, as well as food and
+            merchandise vendors. Some festivals also offer camping facilities for attendees. Heavy metal festivals can
+            range in size, from smaller, local events with a few hundred attendees, to larger, international festivals
+            with tens of thousands of attendees. Many heavy metal festivals take place outdoors, although some may be
+            held in indoor venues. At a heavy metal festival, attendees can expect to hear a variety of heavy metal
+            subgenres, including thrash metal, death metal, and black metal. The atmosphere at these festivals is
+            typically energetic and lively, with fans headbanging and moshing along to the music. In addition to the
+            music, many heavy metal festivals also feature other forms of entertainment, such as fireworks displays,
+            pyrotechnics, and other special effects. These festivals can be a great way for heavy metal fans to discover
+            new bands and connect with others who share their love of the genre.
+          </p>
+        </InfoArticle>
+        <hr />
+        <InfoArticle title='Festival Showers'>
+          <p>
+            At a festival, the shower location is typically an area where attendees can wash and freshen up. These
+            showers are usually located in a central location, such as near the camping area or in a dedicated shower
+            facility. Festival showers are usually communal, with multiple shower stalls or stalls with open showers
+            that are separated by partitions or curtains. Some festivals may offer private showers for an additional
+            fee. The water is usually provided by a tank or other temporary water source, and the showers are often
+            powered by generators or solar panels. Festival shower locations are usually equipped with soap and shampoo,
+            although attendees may want to bring their own personal hygiene products. It's a good idea to bring a towel
+            and flip flops or shower shoes to use in the shower area. Overall, the festival shower location is a
+            convenient and necessary facility for attendees to stay clean and refreshed during the event. It's important
+            to remember to be considerate of others when using the showers, and to follow any posted rules or
+            guidelines.
+          </p>
+        </InfoArticle>
+        <hr />
+      </section>
+    </>
+  );
 }
 
-export default index;
+export default Info;
 
 /* import { useState } from "react";
 

@@ -1,7 +1,8 @@
 import { useState } from "react";
-import info from "../../styles/components/info/Info.module.sass";
+import infoArticle from "../../styles/components/info/InfoArticle.module.sass";
+import Image from "next/image";
 
-function InfoArticle() {
+function InfoArticle({ title, children }) {
   const [expand, setExpand] = useState(false);
   function expandArticle(setExpand) {
     console.log(expand);
@@ -13,28 +14,27 @@ function InfoArticle() {
   }
 
   return (
-    <article className={info.article}>
-      <h1>News Title</h1>
-      <p>
-        lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-        facilisi. Nulla facilisi. Nulla
-      </p>
-
-      {expand == true ? (
-        <>
-          lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
-          facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi.
-          Nulla facilisi. Nulla facilisi. Nulla
-          <h2>LOL</h2>{" "}
-        </>
-      ) : null}
-      <div
-        onClick={() => {
-          expandArticle(setExpand);
-        }}>
-        {!expand ? <p>Read More</p> : <p>Read Less</p>}
+    <article>
+      <h1>{title}</h1>
+      <div className={infoArticle.flex}>
+        <div
+          onClick={() => {
+            expandArticle(setExpand);
+          }}>
+          {!expand ? (
+            <div>
+              <figure>
+                <Image src='/arrow.svg' width='50' height='50'></Image>
+              </figure>
+            </div>
+          ) : (
+            <figure>
+              <Image src='/arrow.svg' width='50' height='50'></Image>
+            </figure>
+          )}
+        </div>
       </div>
+      {expand == true ? <div className=''>{children}</div> : null}
     </article>
   );
 }
