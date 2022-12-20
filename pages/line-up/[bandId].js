@@ -20,6 +20,7 @@ function BandId({ p, genre, name, logo, logoCredits, members, bio }) {
       }
     }
   }
+
   const getInfo = bandScheduleInfo(p);
   const { day, scene, start, end } = getInfo;
   console.log(getInfo);
@@ -72,9 +73,11 @@ function BandId({ p, genre, name, logo, logoCredits, members, bio }) {
 } */
 
 export async function getServerSideProps(content) {
+  const api = "https://festivalapi.fly.dev/";
+  const local = "http://localhost:8080/";
   const bandId = content.params.bandId; // taken from the file name
-  const response = await fetch("http://localhost:8080/bands");
-  const responseSchedule = await fetch("http://localhost:8080/schedule");
+  const response = await fetch(api + "bands");
+  const responseSchedule = await fetch(api + "schedule");
   const data = await response.json();
   const dataSchedule = await responseSchedule.json();
 

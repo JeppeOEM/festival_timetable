@@ -175,13 +175,28 @@ function LineUp({ bands, genres, playingWhenData, bandsReset, imgData }) {
 }
 
 export async function getStaticProps() {
-  const response = await fetch("http://localhost:8080/bands");
-  const responseSchedule = await fetch("http://localhost:8080/schedule");
+  const api = "https://festivalapi.fly.dev/";
+  const local = "http://localhost:8080/";
+
+  const response = await fetch(api + "bands");
+  const responseSchedule = await fetch(api + "schedule");
   const data = await response.json();
   const dataSchedule = await responseSchedule.json();
-  const randomImageList = await fetch("http://localhost:3000/api");
-  const imgData = await randomImageList.json();
+  /*  const randomImageList = await fetch("http://localhost:3000/api"); */
+  /*   const imgData = await randomImageList.json(); */
+  const imgData = {
+    image: [
+      "pexels-photo-164693.jpeg",
+      "pexels-photo-164758.webp",
+      "pexels-photo-167385.jpeg",
+      "pexels-photo-167629.jpeg",
+      "pexels-photo-167637.jpeg",
+      "pexels-photo-210922.jpeg",
+      "pexels-photo-922319.jpeg",
+    ],
+  };
 
+  console.log(imgData.length);
   // remove duplicates from the array
 
   const playingWhenData = playingWhen(dataSchedule); // extracting information from the diffrent acts
@@ -208,6 +223,7 @@ export async function getStaticProps() {
       "Industrial Metal",
       "Funeral Doom",
       "Nu Metal",
+      "Thrash Metal",
     ];
     let listLength = RandomGenre.length;
     console.log(RandomGenre[1]);

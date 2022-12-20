@@ -47,9 +47,9 @@ function Info() {
             that are separated by partitions or curtains. Some festivals may offer private showers for an additional
             fee. The water is usually provided by a tank or other temporary water source, and the showers are often
             powered by generators or solar panels. Festival shower locations are usually equipped with soap and shampoo,
-            although attendees may want to bring their own personal hygiene products. It's a good idea to bring a towel
+            although attendees may want to bring their own personal hygiene products. Is a good idea to bring a towel
             and flip flops or shower shoes to use in the shower area. Overall, the festival shower location is a
-            convenient and necessary facility for attendees to stay clean and refreshed during the event. It's important
+            convenient and necessary facility for attendees to stay clean and refreshed during the event. Its important
             to remember to be considerate of others when using the showers, and to follow any posted rules or
             guidelines.
           </p>
