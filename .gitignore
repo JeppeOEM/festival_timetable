@@ -38,5 +38,3 @@ next-env.d.ts
 # Local Netlify folder
 .netlify
 
-/pages/api
-/pages/img
