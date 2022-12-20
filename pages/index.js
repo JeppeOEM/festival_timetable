@@ -10,12 +10,13 @@ function Index() {
   const articleTwo = "This year we will provide a free shuttle service to and from the festival.";
   return (
     <>
-      <header className={news.hero}>
-        {/*         <figure className={news.heroPic}>
-       
-          <Image src='/img/pexels-photo-164693.jpeg' alt='Ragnarock Festival' fill />
-        </figure> */}
-        <h1 className={news.festivalTitle}>Ragnarock</h1>
+      <header className={news.heroBox}>
+        <div className={news.wrapper}>
+          <figure className={news.heroPic}>
+            <Image src='/cropped.webp' alt='Festival' fill />
+          </figure>
+          <h1 className={news.festivalTitle}>Ragnarock</h1>
+        </div>
       </header>
       <div classsName={news.body}>
         <h1 className={news.anouncements}>Anouncements</h1>

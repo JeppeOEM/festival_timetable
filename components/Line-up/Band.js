@@ -18,8 +18,16 @@ function Band(props) {
   return (
     <article className={BandGrid.Band}>
       <div class={BandGrid.gradient}> </div>
-      <figure classname={BandGrid.img}>
-        <Image class src={logo} alt={logo} fill />
+      <figure>
+        <Image
+          class
+          src={logo}
+          alt={logo}
+          fill
+          sizes='(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw'
+        />
       </figure>
 
       <Link
