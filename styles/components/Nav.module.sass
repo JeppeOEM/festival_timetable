@@ -1,0 +1,67 @@
+@import 'styles/variables.sass'
+
+.parent
+    z-index: 10
+    position: fixed
+    top: 0
+    left: 0
+    margin: auto
+    width: 100%
+
+.navbar
+    display: flex
+    justify-content: space-between
+    background-color: $black
+
+.logo
+    padding: 0.7rem
+
+.menu
+    display: flex
+    align-items: center
+
+    & ul
+
+        display: flex
+        justify-content: space-between
+        align-items: center
+        list-style: none
+
+    & li
+        padding-left: 1rem
+        padding-right: 1rem
+        text-decoration: none
+        margin-right: 8rem
+        margin-right: 8rem
+
+        font-size: $text
+
+.burgerClick
+    display: none
+
+    z-index: 111
+    position: absolute
+    top: 1rem
+    right: 2rem
+
+.burgerBox
+    display: none
+
+.burgerItem
+
+    font-size: $smallP
+@media screen and (max-width: 1100px)
+    .burgerClick
+        z-index: 222
+        margin-left: 10rem
+        display: absolute
+    .menu
+        display: none
+    .burgerBox
+        display: none
+        margin-top: 1.7rem
+        z-index: 111
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center

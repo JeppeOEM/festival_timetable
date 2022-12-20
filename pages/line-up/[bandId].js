@@ -1,11 +1,11 @@
 import Image from "next/image";
 import kebabCase from "../../js_functions/kebabCase";
-import classes from "./BandId.module.sass";
+
 import playingWhen from "../../js_functions/playingWhen";
 import DayPlaying from "../../components/Line-up/DayPlaying";
 
 import bandId from "../../styles/pages/bandId.module.sass";
-
+import Nav from "../../components/Nav";
 import { useState } from "react";
 
 //WEIRD NAMING ALERT
@@ -20,38 +20,48 @@ function BandId({ p, genre, name, logo, logoCredits, members, bio }) {
       }
     }
   }
+
   const getInfo = bandScheduleInfo(p);
   const { day, scene, start, end } = getInfo;
   console.log(getInfo);
 
   const membersMapped = members.map((member) => {
-    return member + " ";
+    // FIX LAST COMMA
+    return member + ", ";
   });
 
   return (
-    <section className={bandId.section}>
-      <h1 className={bandId.header}>{name}</h1>
-      {
-        <>
-          <figure className={bandId.logo}>
-            {/*            <Image src='http://localhost:3000/random-img' alt='some' fill></Image> */}
-            <Image src={logo} alt={name} fill />
-          </figure>
-          <p className={bandId.italic}>{logoCredits}</p>
-        </>
-      }
-      <h3>Genre: {genre}</h3>
-      <h3>Scene: {scene} </h3>
-      <div className={bandId.inline}>
-        <DayPlaying day={day}></DayPlaying>{" "}
-        <h3 className={bandId.inline}>
-          {start} : {end}
-        </h3>
-        <h3>Members: {membersMapped}</h3>
-      </div>
+    <>
+      <section className={bandId.section}>
+        {
+          <>
+            <figure className={bandId.logo}>
+              <Image src={logo} alt={name} fill />
+            </figure>
+            <p className={bandId.italic}>{logoCredits}</p>
+          </>
+        }
+        <h1 className={bandId.header}>{name}</h1>
 
-      <p className={bandId.fontSize}>{bio}</p>
-    </section>
+        <div className={bandId.bandInfo}>
+          <h2>Genre:</h2> <p className={bandId.fontSize}>&nbsp;{genre}</p>
+        </div>
+        <div className={bandId.bandInfo}>
+          <h2>Scene: </h2>
+          <p className={bandId.fontSize}>&nbsp;{scene}</p>
+        </div>
+        <div className={bandId.bandInfo}>
+          <DayPlaying day={day}></DayPlaying>&nbsp;
+          <p className={bandId.fontSize}>{start}</p>&nbsp; :&nbsp;<p className={bandId.fontSize}>{end}</p>
+        </div>
+        <div className={bandId.bandInfo}>
+          <h2>Members: </h2>
+          <p>{membersMapped}</p>
+        </div>
+
+        <p className={bandId.fontSize}>{bio}</p>
+      </section>
+    </>
   );
 }
 
@@ -63,9 +73,11 @@ function BandId({ p, genre, name, logo, logoCredits, members, bio }) {
 } */
 
 export async function getServerSideProps(content) {
+  const api = "https://festivalapi.fly.dev/";
+  const local = "http://localhost:8080/";
   const bandId = content.params.bandId; // taken from the file name
-  const response = await fetch("http://localhost:8080/bands");
-  const responseSchedule = await fetch("http://localhost:8080/schedule");
+  const response = await fetch(api + "bands");
+  const responseSchedule = await fetch(api + "schedule");
   const data = await response.json();
   const dataSchedule = await responseSchedule.json();
 

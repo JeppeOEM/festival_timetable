@@ -20,7 +20,9 @@ function Schedule(props) {
 }
 
 export async function getStaticProps() {
-  const response = await fetch("http://localhost:8080/schedule");
+  const api = "https://festivalapi.fly.dev/";
+  const local = "http://localhost:8080/";
+  const response = await fetch(api + "schedule");
   const data = await response.json();
 
   console.log(data);

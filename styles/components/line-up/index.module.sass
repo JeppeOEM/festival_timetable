@@ -6,7 +6,7 @@
     margin-bottom: 5%
 
 .selectorBtn.active
-    color: red
+    color: $white
     text-decoration: underline
 
 .big
@@ -16,16 +16,20 @@
 .selection
 
     padding-top: 0rem
-    background-color: $background
-
     margin-left: 5%
 
 .hr
+
     margin-left: 5%
     margin-right: 5%
 
-/* .option option
- color: red */
+.dayBox
+    margin-left: 0
+
+.filterText
+    padding-bottom: 0.5rem
+
+    font-size: $text
 
 .selection
     display: flex
@@ -35,20 +39,26 @@
 
     padding-right: 1rem
     a
-        color: $color
+        color: $white
         &:hover
             cursor: pointer
             color: $accent
 
 .selectorBtn
-    font-size: $mediumP
-
-.select
-    margin: 20px
+    font-size: $smallP
     &:hover
-        color: yellow
+        cursor: pointer
+        color: $accent
+
+.droDownBox
+
+.dropDownItem
+    display: inline
+    &:first-child
+        margin-left: 5%
 
 .select
+
     width: 100vw
     margin-left: 5%
     display: flex
@@ -57,9 +67,12 @@
     a
         text-decoration: none
         span
-            color: red
-            font-size: $smallP
+            color: white
+            font-size: $text
             padding-right: 1rem
+            &:hover
+                cursor: pointer
+                color: $accent
 
 @media (max-width: $mobile)
     .big

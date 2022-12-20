@@ -1,19 +1,21 @@
+import filterBox from "../../styles/components/line-up/FilterBox.module.sass";
 export default function FilterBox({ filterList, setFilter }) {
   return (
     <>
-      <ul>
+      <div className={filterBox.flexbox}>
         {filterList.map((artist, index) => (
-          <li key={index}>
+          <div className={filterBox.filterBox} key={index}>
             {artist}
-            <button
+            <span
+              className={filterBox.item}
               onClick={() => {
                 setFilter(filterList.filter((a) => a !== artist));
               }}>
-              Delete
-            </button>
-          </li>
+              &nbsp; x&nbsp;
+            </span>
+          </div>
         ))}
-      </ul>
+      </div>
     </>
   );
 }

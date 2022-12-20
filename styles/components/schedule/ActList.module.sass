@@ -1,12 +1,29 @@
 
 @import 'styles/variables.sass'
+.dropdownSchedule
+    z-index: 2
+    position: sticky
+    top: 20px
+    left: 8%
+
+    height: 2rem
+    optgroup
+        font-size: 1rem
 .actBox
+
     width: 100%
     display: flex
     flex-direction: row
     justify-content: center
     transform: translateX(-5%)
 
+<<<<<<< HEAD
+=======
+/*     width: 100%
+ display: grid
+ grid-template-columns: 10rem 1fr
+ */
+>>>>>>> fly_io
 .scenes
 
     margin: 0
@@ -22,12 +39,12 @@
             color: $white
 
         li
-
+            background: grey
             display: flex
             justify-content: center
             align-items: center
             &:hover
-                background-color: $accent
+                background-color: $white
                 color: $black
                 cursor: pointer
 
@@ -38,7 +55,7 @@
     li
         width: 15rem
         height: 10rem
-        border: 1px solid $accent
+        border: 1px solid $white
         list-style: none
         padding: 1rem
         padding-right: 2rem
@@ -53,16 +70,9 @@
     li
 
         height: 10rem
-        border: 1px solid $accent
+
         list-style: none
         padding: 1rem
-
-        .time
-            width: 10%
-            display: block
-            width: 0rem
-            border: 1px solid $black
-            color: $accent
 
         p
             margin: 0
@@ -70,42 +80,87 @@
             transform: translateY(-1.5rem)
 
 .timeDiv
+<<<<<<< HEAD
+=======
+
+    transform: translateY(-6.1rem)
+    font-size: $smallP
+    margin-top: 1rem
+>>>>>>> fly_io
     position: sticky
     top: 0
     align-self: start
     left: 0
     background-color: $black
+<<<<<<< HEAD
+=======
+    .hr
+        transform: translateY(2rem)
+>>>>>>> fly_io
 
 /* ACTS */
 
 .sceneName
+    font-size: $mediumP
     text-align: center
     padding-left: 2rem
     height: 5rem
     margin: 0
 
 .timeHeader
+    transform: translateY(3rem)
+    font-size: $mediumP
     text-align: center
-    padding-left: 2.5rem
-    height: 4rem
+
+    padding-left: 3.5rem
+
 .date
-    padding-left: 2.5rem
+    font-size: $smallP
+    padding-left: 3.8rem
+    transform: translateY(0.5rem)
 
 .days
+    padding-bottom: 1rem
     height: 3rem
     display: flex
     justify-content: center
     span
         text-align: center
-        color: red
+        color: $white
         font-size: $smallP
         padding-right: 1rem
+        &:hover
+            cursor: pointer
+            color: $accent
+
+@media screen and (max-width: 575px)
+    .timeDiv
+        position: fixed
+        transform: translateY(5.7rem)
+        .hr
+            transform: translateY(1.3rem)
+
+    .scenes
+        padding-left: 24rem
 
 @media screen and (max-width: 790px)
+    .scenes
+
+        margin-top: 2rem
+        padding-left: 20rem
+    .dropdownSchedule
+        display: block
+
+    .hide
+        display: none
     .days
         display: none
 
 @media screen and (max-width: 1250px)
+    .actBox
+
+        transform: translateX(0%)
+
     .scenes
 
         li
@@ -113,13 +168,6 @@
             height: 7rem
 
     .timeUl
+        margin-top: 1rem
         li
             height: 7rem
-
-@media screen and (max-width: 700px)
-    .scenes
-        padding-left: 13rem
-
-@media screen and (max-width: 700px)
-    .scenes
-        padding-left: 13rem
