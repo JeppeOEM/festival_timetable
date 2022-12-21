@@ -17,8 +17,8 @@ function Band(props) {
 
   return (
     <article className={BandGrid.Band}>
-      <div class={BandGrid.gradient}> </div>
-      <figure>
+      <div className={BandGrid.gradient}> </div>
+      <figure className={BandGrid.figure}>
         <Image
           class
           src={logo}
