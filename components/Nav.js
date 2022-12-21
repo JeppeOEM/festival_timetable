@@ -42,21 +42,31 @@ function Nav(props) {
         </div>
         <div className={nav.navbar}>
           <div className={nav.logo}>
-            <Image src='/logo.svg' width='40' height='40' alt='' />
+            <Image src='/logo-horizontal-white.svg' width='100' height='30' alt='' />
           </div>
           <div className={nav.menu}>
             <ul>
               <li>
-                <Link href='/'>Announcements</Link>
+                <Link href='/'>
+                  <span className={nav.span}>Announcements</span>
+                </Link>
               </li>
               <li>
-                <Link href='/line-up'>Line-Up</Link>
+                <Link href='/line-up'>
+                  <span className={nav.span}>Line-Up</span>
+                </Link>
               </li>
               <li>
-                <Link href='/schedule'>Timetable</Link>
+                <Link href='/schedule'>
+                  {" "}
+                  <span className={nav.span}>Timetable</span>
+                </Link>
               </li>
               <li>
-                <Link href='/info'>Info</Link>
+                <Link href='/info'>
+                  {" "}
+                  <span className={nav.span}>Info</span>
+                </Link>
               </li>
             </ul>
           </div>

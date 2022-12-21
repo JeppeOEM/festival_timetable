@@ -11,12 +11,7 @@ function Index() {
   return (
     <>
       <header className={news.heroBox}>
-        <div className={news.wrapper}>
-          <figure className={news.heroPic}>
-            <Image src='/cropped.webp' alt='Festival' fill />
-          </figure>
-          <h1 className={news.festivalTitle}>Ragnarock</h1>
-        </div>
+        <h1 className={news.festivalTitle}>Ragnarock</h1>
       </header>
       <div className={news.body}>
         <h1 className={news.anouncements}>Anouncements</h1>
