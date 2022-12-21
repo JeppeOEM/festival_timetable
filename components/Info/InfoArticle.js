@@ -22,12 +22,12 @@ function InfoArticle({ title, children }) {
           }}>
           {!expand ? (
             <div>
-              <figure>
+              <figure className={`${infoArticle.arrow} ${expand === true && infoArticle.active}`}>
                 <Image src='/arrow.svg' width='50' height='50'></Image>
               </figure>
             </div>
           ) : (
-            <figure>
+            <figure className={infoArticle.arrow}>
               <Image src='/arrow.svg' width='50' height='50'></Image>
             </figure>
           )}

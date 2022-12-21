@@ -23,8 +23,6 @@ export async function getStaticProps() {
   const response = await fetch(api + "schedule");
   const data = await response.json();
 
-  console.log(data);
-
   return {
     props: {
       act: data,
