@@ -2,3 +2,7 @@ BUGS: fix displaying days and genre empty space'
 create searchbar
 
 make selection sticky
+
+FIX LINKS 
+
+FIX ACDC

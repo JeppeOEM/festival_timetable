@@ -6,7 +6,7 @@ import kebabCase from "../../js_functions/kebabCase";
 function Acts({ stage, day }) {
   return (
     <section>
-      <h2 class={actList.sceneName}>{stage}</h2>
+      <h2 className={actList.sceneName}>{stage}</h2>
       <ul className={actList.ActList}>
         {day.map((act) => {
           return (

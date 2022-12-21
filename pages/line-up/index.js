@@ -2,23 +2,16 @@ import BandList from "../../components/Line-up/BandList";
 import BandListGenres from "../../components/Line-up/BandListGenres";
 import Dropdown from "../../components/Line-up/Dropdown";
 import FilterBox from "../../components/Line-up/FilterBox";
-
-import Test from "../../components/Line-up/Test";
 import playingWhen from "../../js_functions/playingWhen";
-import sortList from "../../js_functions/sortList";
 import filterPerDay from "../../js_functions/filterPerDay";
-
-import changeSortDir from "../../js_functions/changeSortDir";
-import getRandomImage from "../../js_functions/getRandomImage";
 import DropdownDay from "../../components/Line-up/DropdownDay";
 import DaySelector from "../../components/Line-up/DaySelector.js";
 import AlphabetSelector from "../../components/Line-up/AlphabetSelector.js";
-
 import index from "../../styles/components/line-up/index.module.sass";
 
 import { useEffect, useState } from "react";
 
-function LineUp({ bands, genres, playingWhenData, bandsReset, imgData }) {
+function LineUp({ bands, genres, playingWhenData, bandsReset }) {
   const [filterGenre, setFilterGenre] = useState([]);
   const [filterDay, setFilterDay] = useState([]);
   const [filterBand, setFilterBand] = useState([]);
@@ -136,18 +129,11 @@ function LineUp({ bands, genres, playingWhenData, bandsReset, imgData }) {
         <hr className={index.hr}></hr>
         <FilterBox setFilter={setFilterGenre} filterList={filterGenre} />
         {filterSettings === "alphabet" && (
-          <BandList
-            imgData={imgData}
-            bands={filterBand}
-            filterResult={filterBand}
-            actData={actData}
-            filterGenre={filterGenre}
-          />
+          <BandList bands={filterBand} filterResult={filterBand} actData={actData} filterGenre={filterGenre} />
         )}
 
         {filterSettings === "days" && (
           <BandListGenres
-            imgData={imgData}
             shownDays={shownDays}
             allBands={bands}
             bands={filterBand}
@@ -158,7 +144,6 @@ function LineUp({ bands, genres, playingWhenData, bandsReset, imgData }) {
 
         {filterSettings === "genres" && (
           <BandListGenres
-            imgData={imgData}
             shownDays={shownDays}
             allBands={bands}
             bands={filterBand}
@@ -196,6 +181,7 @@ export async function getStaticProps() {
   // remove duplicates from the array
 
   const playingWhenData = playingWhen(dataSchedule); // extracting information from the diffrent acts
+
   const combined = combineData(data, playingWhenData, imgData); // act data is added to the band data
 
   function combineData(data, playingWhenData) {
@@ -263,7 +249,6 @@ export async function getStaticProps() {
       bands: combined,
       genres,
       playingWhenData,
-      imgData,
     },
   };
 }

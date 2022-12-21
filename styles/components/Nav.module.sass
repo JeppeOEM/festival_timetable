@@ -12,6 +12,8 @@
     display: flex
     justify-content: space-between
     background-color: $black
+    color: $white
+    text-decoration: none
 
 .logo
     padding: 0.7rem
@@ -37,7 +39,6 @@
         font-size: $text
 
 .burgerClick
-    display: none
 
     z-index: 111
     position: absolute
@@ -48,8 +49,12 @@
     display: none
 
 .burgerItem
-
+    text-decoration: none
     font-size: $smallP
+    li
+        list-style: none
+        text-decoration: none
+
 @media screen and (max-width: 1100px)
     .burgerClick
         z-index: 222

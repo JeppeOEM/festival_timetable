@@ -72,7 +72,7 @@ function BandId({ p, genre, name, logo, logoCredits, members, bio }) {
 export async function getServerSideProps(content) {
   const api = "https://festivalapi.fly.dev/";
   const local = "http://localhost:8080/";
-  const bandId = content.params.bandId; // taken from the file name
+  const bandId = content.params.bandId; // taken from the path name
   const response = await fetch(api + "bands");
   const responseSchedule = await fetch(api + "schedule");
   const data = await response.json();

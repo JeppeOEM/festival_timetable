@@ -10,7 +10,7 @@ function playingWhen(scenes) {
       for (let i = 0; i < scenes[sceneList[y]][whatDay[x]].length; i++) {
         // Translated: scenes["midgard"].mon[0].act
         if (scenes[sceneList[y]][whatDay[x]][i].act !== "break") {
-          // save it as array of objects {day: act, scene: scene, start: start, end: end}
+          // save it as array of objects {day: day, scene: scene, start: start, end: end}
           arr.push({
             day: whatDay[x],
             id: scenes[sceneList[y]][whatDay[x]][i].act,

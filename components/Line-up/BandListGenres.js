@@ -3,7 +3,7 @@ import BandGrid from "../../styles/components/line-up/BandGrid.module.sass";
 import { useState } from "react";
 /* import filterPerDay from "../../js_functions/filterPerDay"; */
 
-function BandList({ imgData, shownDays, bands, filterDay, filterResult, filterGenre }) {
+function BandList({ shownDays, bands, filterDay }) {
   shownDays.includes();
 
   function isDayinList(day, filterDay) {
@@ -22,7 +22,7 @@ function BandList({ imgData, shownDays, bands, filterDay, filterResult, filterGe
               Monday
             </h2>
           )}
-          <DisplayBand imgData={imgData} day='mon' bands={bands}></DisplayBand>
+          <DisplayBand day='mon' bands={bands}></DisplayBand>
         </>
       )}
       {isDayinList("tue", filterDay) && (
@@ -33,7 +33,7 @@ function BandList({ imgData, shownDays, bands, filterDay, filterResult, filterGe
               Tuesday
             </h2>
           )}
-          <DisplayBand imgData={imgData} day='tue' bands={bands}></DisplayBand>
+          <DisplayBand day='tue' bands={bands}></DisplayBand>
         </>
       )}
 
@@ -44,7 +44,7 @@ function BandList({ imgData, shownDays, bands, filterDay, filterResult, filterGe
               Wednesday
             </h2>
           )}
-          <DisplayBand imgData={imgData} day='wed' bands={bands}></DisplayBand>
+          <DisplayBand day='wed' bands={bands}></DisplayBand>
         </>
       )}
       {isDayinList("thu", filterDay) && (
@@ -54,7 +54,7 @@ function BandList({ imgData, shownDays, bands, filterDay, filterResult, filterGe
               Thursday
             </h2>
           )}
-          <DisplayBand imgData={imgData} day='thu' bands={bands}></DisplayBand>
+          <DisplayBand day='thu' bands={bands}></DisplayBand>
         </>
       )}
 
@@ -65,7 +65,7 @@ function BandList({ imgData, shownDays, bands, filterDay, filterResult, filterGe
               Friday
             </h2>
           )}
-          <DisplayBand imgData={imgData} day='fri' bands={bands}></DisplayBand>
+          <DisplayBand day='fri' bands={bands}></DisplayBand>
         </>
       )}
 
@@ -76,7 +76,7 @@ function BandList({ imgData, shownDays, bands, filterDay, filterResult, filterGe
               Saturday
             </h2>
           )}
-          <DisplayBand imgData={imgData} day='sat' bands={bands}></DisplayBand>
+          <DisplayBand day='sat' bands={bands}></DisplayBand>
         </>
       )}
 
@@ -87,13 +87,13 @@ function BandList({ imgData, shownDays, bands, filterDay, filterResult, filterGe
               Sunday
             </h2>
           )}
-          <DisplayBand imgData={imgData} day='sun' bands={bands}></DisplayBand>
+          <DisplayBand day='sun' bands={bands}></DisplayBand>
         </>
       )}
     </>
   );
 
-  function DisplayBand({ day, bands, imgData }) {
+  function DisplayBand({ day, bands }) {
     let resultArr = [];
 
     return (
@@ -103,7 +103,6 @@ function BandList({ imgData, shownDays, bands, filterDay, filterResult, filterGe
             if (day === band.day) {
               return (
                 <Band
-                  imgData={imgData}
                   key={band.name}
                   name={band.name}
                   genre={band.genre}
@@ -121,31 +120,3 @@ function BandList({ imgData, shownDays, bands, filterDay, filterResult, filterGe
   }
 }
 export default BandList;
-/* function BandAlphabet({ bands, letter }) {
-  return bands.map((band) => {
-    if (letter === band.name[0].toUpperCase()) {
-      return (
-        <>
-          <Band
-            key={band.name}
-            name={band.name}
-            genre={band.genre}
-            logo={band.logo}
-            logoCredits={band.logoCredits}
-            members={band.members}></Band>
-        </>
-      );
-    }
-  });
-}
-
-function AlphabetLetter({ bands, letter }) {
-  return (
-    <>
-      <h2 id=""className={BandGrid.letter}>{letter}</h2>
-      <section className={BandGrid.BandGrid}>
-        <BandAlphabet bands={bands} letter={letter}></BandAlphabet>
-      </section>
-    </>
-  );
-} */

@@ -18,7 +18,7 @@ function Index() {
           <h1 className={news.festivalTitle}>Ragnarock</h1>
         </div>
       </header>
-      <div classsName={news.body}>
+      <div className={news.body}>
         <h1 className={news.anouncements}>Anouncements</h1>
         <section className={news.section}>
           <ArticleLayout intro={articleOne} title='Freddie is Back'>
